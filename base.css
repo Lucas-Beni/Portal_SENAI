@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Moderustic:wght@300..800&display=swap');
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+header{
+    height: 16vh;
+    width: auto;
+    background-color: #FF000A;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+    #logo{
+        width: 11.5vw;
+        display: flex;
+        position: absolute;
+        left: 10vw;
+    }
+
+    #login{
+        width: 4.5vw;
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        right: 3vw;
+    }
+
+    #menu{
+        width: 5.5vw;
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        left: 1.8vw;
+    }
+
+    .direcionar a{
+        position: absolute;
+        top: 7vh;
+        right: 8.25vw;
+        text-decoration: none;
+        color: white;
+        font-size: 1.05vw;
+        font-family: "Inter", sans-serif;
+        font-weight: 790;
+    }
+  }
+

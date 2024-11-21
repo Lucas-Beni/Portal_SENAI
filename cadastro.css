@@ -40,24 +40,24 @@ body{
     }
 }
 
-.login{
+.cadastro{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30vw;
-    height: 45vh;
+    width: 28vw;
+    height: 56.5vh;
     border: .3vw solid #B50709;
-    border-radius: 2.5vw;
+    border-radius: 2vw;
     background-color: #fff;
 
     & p{
         font-weight: bold;
         font-family: "Inter";
-        font-size: 1.2vw;
+        font-size: 1.4vw;
         position: relative;
         left: 2vw;
-        top: 2vh;
+        top: 0.5vh;
         width: 3.5vw;
     }
 
@@ -67,15 +67,15 @@ body{
         align-items: center;
         flex-direction: column;
         width: 30vw;
-        height: 55vh;
+        height: 60vh;
         position: absolute;
-        top: 49%;
+        top: 49.5%;
         left: 50%;
         transform: translate(-50%, -50%);
 
         & input{
-            margin-bottom: 1.2vh;
-            margin-top: 1.2vh;
+            margin-bottom: 2vh;
+            margin-top: 2vh;
             width: 20vw;
             height: 5vh;
             border-radius: .7vw;
@@ -102,7 +102,7 @@ body{
         border-radius: 1vw;
         font-size: 1vw;
         position: relative;
-        top: 27vh;
+        top: 38.5vh;
         left: 50%;
         transform: translateX(-50%);
         cursor: pointer;
@@ -110,11 +110,43 @@ body{
 
     & a{
         position: absolute;
-        top: 89%;
+        top: 90%;
         left: 50%;
         transform: translateX(-50%);
         text-decoration: none;
         color: #0bbeff;
         font-family: "Inter";
     }
+}
+
+
+.Usuario span{
+    font-weight: 450;
+    font-family: "Inter";
+    font-size: 1vw;
+    position: relative;
+    right: 7.5vw;
+    top: 2vh;
+    width: 3.5vw;
+}
+
+
+.Senha span{
+    font-weight: 450;
+    font-family: "Inter";
+    font-size: 1vw;
+    position: relative;
+    right: 7.5vw;
+    top: 2vh;
+    width: 3.5vw;
+}
+
+.Email span{
+    font-weight: 450;
+    font-family: "Inter";
+    font-size: 1vw;
+    position: relative;
+    right: 7.5vw;
+    top: 2vh;
+    width: 3.5vw;
 }
