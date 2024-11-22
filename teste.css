@@ -1,0 +1,142 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.alunos{
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vw;
+    height: 55vh;
+    border: .3vw solid #D9D9D9;
+    border-radius: 2.5vw;
+    background-image: url(img/fundoLogin.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & p{
+        color: #fff;
+    }
+
+    & .nome{
+        width: 10vw;
+        height: 5vh;
+        color: #fff;
+        background-color: #B00A0C;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 1vw;
+        border-top-right-radius: 1vw;
+        position: absolute;
+        top: -10.2%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    & .inputs-1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 20vw;
+        height: 30vh;
+        position: absolute;
+        top: 35%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+
+        & input{
+            margin-bottom: .8vh;
+            margin-top: .8vh;
+            width: 13vw;
+            height: 4vh;
+            border-radius: 2vw;
+            border: none;
+            background-color: #D9D9D9;
+            text-indent: 1vw;
+            font-size: .8vw;
+        }
+        
+        & ::-webkit-input-placeholder{
+            color: #fff;
+            position: relative;
+            top: .3vh;
+            font-size: 1vw;
+        }
+    }
+
+    & .inputs-2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 20vw;
+        height: 30vh;
+        position: absolute;
+        top: 35%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+
+        & input{
+            margin-bottom: .8vh;
+            margin-top: .8vh;
+            width: 13vw;
+            height: 4vh;
+            border-radius: 2vw;
+            border: none;
+            background-color: #D9D9D9;
+            text-indent: 1vw;
+            font-size: .8vw;
+        }
+        
+        & ::-webkit-input-placeholder{
+            color: #fff;
+            position: relative;
+            top: .3vh;
+            font-size: 1vw;
+        }
+    }
+
+    & .select-turma{
+        position: absolute;
+        top: 56%;
+        width: 15vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        & select{
+            width: 13vw;
+            height: 4vh;
+            border-radius: 1vw;
+            border: none;
+            background-color: #D9D9D9;
+            text-indent: 1vw;
+            font-size: .8vw;
+            margin-top: .4vw;
+        }
+    }
+
+    & button{
+        background-color: #4CBE3A;
+        border: none;
+        color: #fff;
+        width: 8vw;
+        height: 4vh;
+        border-radius: 1vw;
+        font-size: 1vw;
+        position: absolute;
+        top: 85%;
+        cursor: pointer;
+    }
+}
