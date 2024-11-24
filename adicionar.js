@@ -86,14 +86,22 @@ function alunoLarge (event){
 
 
 function turma1() {
-    turma.innerHTML = `<div class="nome">
-                            <p>Turmas</p>
+    turma.innerHTML =  `<div class="nome">
+                            <p>turmas</p>
                         </div>
                         <div class="inputs">
-                            <input type="text" placeholder="Usuário">
-                            <input type="password" placeholder="Senha">
-                            <input type="email" placeholder="E-mail">
-                        </div>`;
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" placeholder="Nome" required="required">
+                        </div>
+                        <div class="select-periodo">
+                            <label for="periodo">Período</label>
+                            <select name="periodo" id="periodo">
+                                <option value=""></option>
+                                <option value="">Manhã</option>
+                                <option value="">Tarde</option>
+                            </select>
+                        </div>
+                        <button>Confirmar</button>`;
     turma.style.left = "50%";
     turma.style.top = "50%";
     turma.style.backgroundImage = "url('img/fundoLogin.jpg')";
