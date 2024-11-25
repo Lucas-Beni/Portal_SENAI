@@ -10,9 +10,9 @@ body{
 }
 
 header{
-    height: 16vh;
+    height: 15vh;
     width: auto;
-    background-color: #FF000A;
+    background-color: #FF2A1F;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -43,7 +43,7 @@ header{
 
     .direcionar a{
         position: absolute;
-        top: 7vh;
+        top: 6.5vh;
         right: 8.25vw;
         text-decoration: none;
         color: white;
@@ -52,4 +52,69 @@ header{
         font-weight: 790;
     }
   }
+
+
+
+
+/*JS estilização*/
+
+  
+  /* Estilo do menu lateral */
+.side-menu {
+    width: 0;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FF2A1F;
+    overflow-x: hidden;
+    transition: 0.5s; 
+    z-index: 1000;
+    padding-top: 13vh; /* Espaço superior para o conteúdo */
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu ul li {
+    margin: 2.5vh 0; /* Determina o Espaçamento dos button */
+    text-align: center;
+}
+
+.side-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-family: "Inter", sans-serif;
+    display: block;
+}
+
+
+
+
+
+/* Estilo para quando o menu estiver aberto */
+.side-menu.open {
+    width: 12vw;
+}
+
+
+
+
+/* Botão de fechamento centralizado */
+.close-menu {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    font-size: 2.8rem;
+    color: white;
+    cursor: pointer;
+}
+
 
