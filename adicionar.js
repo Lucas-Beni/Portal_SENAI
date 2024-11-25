@@ -87,7 +87,7 @@ function alunoLarge (event){
 
 function turma1() {
     turma.innerHTML =  `<div class="nome">
-                            <p>turmas</p>
+                            <p>Turmas</p>
                         </div>
                         <div class="inputs">
                             <label for="nome">Nome</label>
@@ -150,14 +150,24 @@ function turmaLarge (event){
 // });
 
 function atividade1() {
-    atividade.innerHTML = `<div class="nome">
-                            <p>Atividades</p>
-                        </div>
-                        <div class="inputs">
-                            <input type="text" placeholder="Usuário">
-                            <input type="password" placeholder="Senha">
-                            <input type="email" placeholder="E-mail">
-                        </div>`;
+    atividade.innerHTML =  `<div class="nome">
+                                <p>Atividades</p>
+                            </div>
+                            <div class="inputs">
+                                <label for="nome">Nome</label>
+                                <input type="text" id="nome" placeholder="Nome" required="required">
+                                <label for="descricao">Descrição</label>
+                                <input type="text" id="descricao" placeholder="Descrição">
+                            </div>
+                            <div class="select-turma2">
+                                <label for="turma2">Turma</label>
+                                <select name="turma2" id="turma2">
+                                    <option value=""></option>
+                                    <option value="">DEV-2</option>
+                                    <option value="">Logística</option>
+                                </select>
+                            </div>
+                            <button>Confirmar</button>`;
     atividade.style.left = "50%";
     atividade.style.top = "50%";
     atividade.style.backgroundImage = "url('img/fundoLogin.jpg')";
@@ -210,10 +220,18 @@ function disciplina1() {
                                 <p>Disciplinas</p>
                             </div>
                             <div class="inputs">
-                                <input type="text" placeholder="Usuário">
-                                <input type="password" placeholder="Senha">
-                                <input type="email" placeholder="E-mail">
-                            </div>`;
+                                <label for="nome">Nome</label>
+                                <input type="text" id="nome" placeholder="Nome" required="required">
+                            </div>
+                            <div class="select-turma3">
+                                <label for="turma3">Turma</label>
+                                <select name="turma3" id="turma3">
+                                    <option value=""></option>
+                                    <option value="">DEV-2</option>
+                                    <option value="">Logística</option>
+                                </select>
+                            </div>
+                            <button>Confirmar</button>`;
     disciplina.style.left = "50%";
     disciplina.style.top = "50%";
     disciplina.style.backgroundImage = "url('img/fundoLogin.jpg')";

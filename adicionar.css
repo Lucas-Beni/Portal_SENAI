@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Moderustic:wght@300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 *{
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter";
 }
 
 body{
@@ -303,6 +304,7 @@ header{
     align-items: center;
     cursor: pointer;
 
+
     & p{
         color: #fff;
     }
@@ -318,7 +320,7 @@ header{
         border-top-left-radius: 1vw;
         border-top-right-radius: 1vw;
         position: absolute;
-        top: -12%;
+        top: -10.2%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -328,18 +330,18 @@ header{
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 30vw;
-        height: 20vh;
+        width: 20vw;
+        height: 30vh;
         position: absolute;
-        top: 50%;
+        top: 35%;
         left: 50%;
         transform: translate(-50%, -50%);
 
         & input{
-            margin-bottom: .8vh;
-            margin-top: .8vh;
+            margin-bottom: 1.5vh;
+            margin-top: 1.5vh;
             width: 20vw;
-            height: 5vh;
+            height: 6vh;
             border-radius: 2vw;
             border: none;
             background-color: #D9D9D9;
@@ -355,29 +357,38 @@ header{
         }
     }
 
+    .select-turma2{
+        position: absolute;
+        top: 60%;
+        width: 15vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        & select{
+            width: 20vw;
+            height: 6vh;
+            border-radius: 2vw;
+            border: none;
+            background-color: #D9D9D9;
+            text-indent: 1vw;
+            font-size: .8vw;
+            margin-top: .4vw;
+        }
+    }
+
     & button{
         background-color: #4CBE3A;
         border: none;
         color: #fff;
-        width: 7vw;
-        height: 3vh;
+        width: 8vw;
+        height: 4vh;
         border-radius: 1vw;
         font-size: 1vw;
-        position: relative;
-        top: 28vh;
-        left: 50%;
-        transform: translateX(-50%);
-        cursor: pointer;
-    }
-
-    & a{
         position: absolute;
-        top: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        text-decoration: none;
-        color: #0bbeff;
-        font-family: "Inter";
+        top: 85%;
+        cursor: pointer;
     }
 }
 
@@ -411,7 +422,7 @@ header{
         border-top-left-radius: 1vw;
         border-top-right-radius: 1vw;
         position: absolute;
-        top: -12%;
+        top: -10.2%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -421,18 +432,18 @@ header{
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 30vw;
-        height: 20vh;
+        width: 20vw;
+        height: 30vh;
         position: absolute;
-        top: 50%;
+        top: 35%;
         left: 50%;
         transform: translate(-50%, -50%);
 
         & input{
-            margin-bottom: .8vh;
-            margin-top: .8vh;
+            margin-bottom: 0.8vh;
+            margin-top: 0.8vh;
             width: 20vw;
-            height: 5vh;
+            height: 6vh;
             border-radius: 2vw;
             border: none;
             background-color: #D9D9D9;
@@ -448,28 +459,37 @@ header{
         }
     }
 
+    .select-turma3{
+        position: absolute;
+        top: 56%;
+        width: 15vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        & select{
+            width: 20vw;
+            height: 6vh;
+            border-radius: 2vw;
+            border: none;
+            background-color: #D9D9D9;
+            text-indent: 1vw;
+            font-size: .8vw;
+            margin-top: .4vw;
+        }
+    }
+
     & button{
         background-color: #4CBE3A;
         border: none;
         color: #fff;
-        width: 7vw;
-        height: 3vh;
+        width: 8vw;
+        height: 4vh;
         border-radius: 1vw;
         font-size: 1vw;
-        position: relative;
-        top: 28vh;
-        left: 50%;
-        transform: translateX(-50%);
-        cursor: pointer;
-    }
-
-    & a{
         position: absolute;
-        top: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        text-decoration: none;
-        color: #0bbeff;
-        font-family: "Inter";
+        top: 85%;
+        cursor: pointer;
     }
 }
