@@ -9,30 +9,30 @@ atividade.addEventListener('click', atividadeLarge)
 disciplina.addEventListener('click', disciplinaLarge)
 
 function aluno1() {
-    aluno.innerHTML = `<div class="nome">
-            <p>Alunos</p>
-        </div>
-        <div class="inputs-1">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" placeholder="Nome" required="required">
-            <label for="cpf">CPF</label>
-            <input type="text" id="cpf" placeholder="Ex: 999.999.999-99" required="required">
-        </div>
-        <div class="inputs-2">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="E-mail" required="required">
-            <label for="telefone">Telefone</label>
-            <input type="tel" id="telefone" class="input-padrao" required placeholder="(xx) xxxxx-xxxx" required="required">
-        </div>
-        <div class="select-turma">
-            <label for="turma">Turma</label>
-            <select name="turma" id="turma">
-                <option value=""></option>
-                <option value="">DEV-2</option>
-                <option value="">Logística</option>
-            </select>
-        <button>Confirmar</button>
-        </div>`;
+    aluno.innerHTML =  `<div class="nome">
+                            <p>Alunos</p>
+                        </div>
+                        <div class="inputs-1">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" placeholder="Nome" required="required">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" placeholder="Ex: 999.999.999-99" required="required">
+                        </div>
+                        <div class="inputs-2">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" placeholder="E-mail" required="required">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" class="input-padrao" required placeholder="(xx) xxxxx-xxxx" required="required">
+                        </div>
+                        <div class="select-turma">
+                            <label for="turma">Turma</label>
+                            <select name="turma" id="turma">
+                                <option value=""></option>
+                                <option value="DEV-2">DEV-2</option>
+                                <option value="Logística">Logística</option>
+                            </select>
+                        <button type="submit">Confirmar</button>
+                        </div>`;
     aluno.style.left = "50%";
     aluno.style.top = "50%";
     aluno.style.backgroundImage = "url('img/fundoLogin.jpg')";
@@ -96,12 +96,13 @@ function turma1() {
                         <div class="select-periodo">
                             <label for="periodo">Período</label>
                             <select name="periodo" id="periodo">
-                                <option value=""></option>
-                                <option value="">Manhã</option>
-                                <option value="">Tarde</option>
+                            <option value=""></option>
+                            <option value="Matutino">Matutino</option>
+                            <option value="Vespertino">Vespertino</option>
+                            <option value="Noturno">Noturno</option>
                             </select>
                         </div>
-                        <button>Confirmar</button>`;
+                        <button type="submit">Confirmar</button>`;
     turma.style.left = "50%";
     turma.style.top = "50%";
     turma.style.backgroundImage = "url('img/fundoLogin.jpg')";
@@ -153,21 +154,34 @@ function atividade1() {
     atividade.innerHTML =  `<div class="nome">
                                 <p>Atividades</p>
                             </div>
-                            <div class="inputs">
+                            <div class="inputs-1">
                                 <label for="nome">Nome</label>
                                 <input type="text" id="nome" placeholder="Nome" required="required">
-                                <label for="descricao">Descrição</label>
-                                <input type="text" id="descricao" placeholder="Descrição">
-                            </div>
-                            <div class="select-turma2">
-                                <label for="turma2">Turma</label>
-                                <select name="turma2" id="turma2">
+                                <label for="turma">Turma</label>
+                                <select name="turma" id="turma">
                                     <option value=""></option>
-                                    <option value="">DEV-2</option>
-                                    <option value="">Logística</option>
+                                    <option value="1">DEV-2</option>
+                                    <option value="2">Logística</option>
                                 </select>
                             </div>
-                            <button>Confirmar</button>`;
+                            <div class="inputs-2">
+                                <label for="materia">Matéria</label>
+                                <select name="materia" id="materia">
+                                    <option value="1">HTML</option>
+                                    <option value="2">CSS</option>
+                                    <option value="3">SQL</option>
+                                </select>
+                                <label for="semestre">Semestre</label>
+                                <select name="semestre" id="semestre">
+                                    <option value="1">Primeiro</option>
+                                    <option value="2">Segundo</option>
+                                    <option value="3">Terceiro</option>
+                                </select>
+                            </div>
+                            <div class="descricao">
+                                <label for="descricao">Descrição</label>
+                                <input type="text" name="descricao" id="descricao">
+                            <button type="submit">Confirmar</button>`;
     atividade.style.left = "50%";
     atividade.style.top = "50%";
     atividade.style.backgroundImage = "url('img/fundoLogin.jpg')";
@@ -223,15 +237,7 @@ function disciplina1() {
                                 <label for="nome">Nome</label>
                                 <input type="text" id="nome" placeholder="Nome" required="required">
                             </div>
-                            <div class="select-turma3">
-                                <label for="turma3">Turma</label>
-                                <select name="turma3" id="turma3">
-                                    <option value=""></option>
-                                    <option value="">DEV-2</option>
-                                    <option value="">Logística</option>
-                                </select>
-                            </div>
-                            <button>Confirmar</button>`;
+                            <button type="submit">Confirmar</button>`;
     disciplina.style.left = "50%";
     disciplina.style.top = "50%";
     disciplina.style.backgroundImage = "url('img/fundoLogin.jpg')";

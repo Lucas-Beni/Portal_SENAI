@@ -16,6 +16,7 @@ CREATE TABLE dimAlunos (
     nomeAluno NVARCHAR(30) NOT NULL, -- Nome do aluno
     cpfAluno NVARCHAR(14) NOT NULL UNIQUE, -- CPF do aluno, único
     telefoneAluno NVARCHAR(10) NOT NULL UNIQUE, -- Telefone do aluno, único
+	emailAluno NVARCHAR(50) NOT NULL UNIQUE,
     turmaID INT NOT NULL, -- ID da turma a qual o aluno pertence
     foto VARBINARY(MAX) NOT NULL -- Foto do aluno (armazenada em formato binário)
 )
@@ -26,8 +27,9 @@ CREATE TABLE dimAtividades (
     nomeAtividade NVARCHAR(30) NOT NULL, -- Nome da atividade
     turmaID INT NOT NULL, -- ID da turma
     materiaID INT NOT NULL, -- ID da matéria relacionada à atividade
-    alunoID INT NOT NULL, -- ID do aluno relacionado à atividade
-    descricaoAtividade NVARCHAR(100) -- Descrição da atividade
+    alunoID INT,-- ID do aluno relacionado à atividade
+	semestre INT NOT NULL, 
+    descricao NVARCHAR(100) -- Descrição da atividade
 )
 
 -- Cria a tabela "dimMaterias", que armazena as matérias
@@ -47,8 +49,9 @@ CREATE TABLE dimProfessores (
 -- Cria a tabela "dimTurmas", que armazena informações sobre as turmas
 CREATE TABLE dimTurmas (
     turmaID INT PRIMARY KEY NOT NULL IDENTITY (1,1), -- ID da turma, com auto-incremento
-    nomeTurma NVARCHAR(10) NOT NULL, -- Nome da turma
-    dataInicio DATE NOT NULL, -- Data de início da turma
+    nomeTurma NVARCHAR(10) NOT NULL, -- Nome da turma,
+	periodo NVARCHAR(20) NOT NULL,
+    dataInicio DATE, -- Data de início da turma
     dataFim DATE -- Data de fim da turma (opcional)
 )
 
@@ -149,4 +152,17 @@ GO
 ALTER TABLE professoresTurmas
 ADD CONSTRAINT FK_professoresTurmas_dimTurmas FOREIGN KEY (turmaID)
 REFERENCES dimTurmas(turmaID)
+GO
+
+SELECT * FROM dimAlunos
+SELECT * FROM dimTurmas
+
+USE sistemaEscolar; -- Substitua pelo nome do seu banco de dados
+GO
+
+CREATE USER [appUser] FOR LOGIN [appUser];
+GO
+
+ALTER ROLE db_datareader ADD MEMBER [appUser];
+ALTER ROLE db_datawriter ADD MEMBER [appUser];
 GO
