@@ -35,7 +35,7 @@ function aluno1() {
                         </div>`;
     aluno.style.left = "50%";
     aluno.style.top = "50%";
-    aluno.style.backgroundImage = "url('fundoLogin.jpg')";
+    aluno.style.backgroundImage = "url('img/fundoLogin.jpg')";
     aluno.style.backgroundSize = "cover";
     aluno.style.width = "30vw";
     aluno.style.height = "45vh";
@@ -105,7 +105,7 @@ function turma1() {
                         <button type="submit">Confirmar</button>`;
     turma.style.left = "50%";
     turma.style.top = "50%";
-    turma.style.backgroundImage = "url('fundoLogin.jpg')";
+    turma.style.backgroundImage = "url('img/fundoLogin.jpg')";
     turma.style.backgroundSize = "cover";
     turma.style.width = "30vw";
     turma.style.height = "45vh";
@@ -184,7 +184,7 @@ function atividade1() {
                             <button type="submit">Confirmar</button>`;
     atividade.style.left = "50%";
     atividade.style.top = "50%";
-    atividade.style.backgroundImage = "url('fundoLogin.jpg')";
+    atividade.style.backgroundImage = "url('img/fundoLogin.jpg')";
     atividade.style.backgroundSize = "cover";
     atividade.style.width = "30vw";
     atividade.style.height = "45vh";
@@ -240,7 +240,7 @@ function disciplina1() {
                             <button type="submit">Confirmar</button>`;
     disciplina.style.left = "50%";
     disciplina.style.top = "50%";
-    disciplina.style.backgroundImage = "url('fundoLogin.jpg')";
+    disciplina.style.backgroundImage = "url('img/fundoLogin.jpg')";
     disciplina.style.backgroundSize = "cover";
     disciplina.style.width = "30vw";
     disciplina.style.height = "45vh";
