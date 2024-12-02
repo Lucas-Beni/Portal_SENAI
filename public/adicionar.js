@@ -3,6 +3,26 @@ const turma = document.getElementById("turmas");
 const atividade = document.getElementById("atividades");
 const disciplina = document.getElementById("disciplinas");
 
+
+function Load(){
+    aluno.style.width = "10vw"
+    aluno.style.height = "20vh"
+    aluno.style.top="35%";
+    aluno.style.left="25%";
+    turma.style.width = "10vw"
+    turma.style.height = "20vh"
+    turma.style.top = "75%"
+    turma.style.left = "25%"
+    atividade.style.width = "10vw"
+    atividade.style.height = "20vh"
+    atividade.style.top = "35%"
+    atividade.style.left = "75%"
+    disciplina.style.width = "10vw"
+    disciplina.style.height = "20vh"
+    disciplina.style.top = "75%"
+    disciplina.style.left = "75%"
+}
+
 aluno.addEventListener('click', alunoLarge)
 turma.addEventListener('click', turmaLarge)
 atividade.addEventListener('click', atividadeLarge)
@@ -27,9 +47,6 @@ function aluno1() {
                         <div class="select-turma">
                             <label for="turma">Turma</label>
                             <select name="turma" id="turma">
-                                <option value=""></option>
-                                <option value="DEV-2">DEV-2</option>
-                                <option value="Logística">Logística</option>
                             </select>
                         <button type="submit">Confirmar</button>
                         </div>`;
@@ -39,17 +56,13 @@ function aluno1() {
     aluno.style.backgroundSize = "cover";
     aluno.style.width = "30vw";
     aluno.style.height = "45vh";
-    aluno.style.transition = ".5s";
     aluno.style.border=".3vw solid #D9D9D9"
     turma.style.left = "25%";
     turma.style.top = "75%";
-    turma.style.transition = ".5s";
     atividade.style.left = "50%";
     atividade.style.top = "85%";
-    atividade.style.transition = ".5s";
     disciplina.style.left = "75%";
     disciplina.style.top = "75%";
-    disciplina.style.transition = ".5s";
     aluno.removeEventListener('click',alunoLarge)
 }
 
@@ -60,7 +73,6 @@ function aluno2() {
     aluno.style.backgroundImage = "none";
     aluno.style.border=".3vw solid #B50709"
     aluno.addEventListener('click', alunoLarge)
-    
 }
 
 function alunoLarge (event){
@@ -109,17 +121,13 @@ function turma1() {
     turma.style.backgroundSize = "cover";
     turma.style.width = "30vw";
     turma.style.height = "45vh";
-    turma.style.transition = ".5s";
     turma.style.border=".3vw solid #D9D9D9";
     aluno.style.left = "25%";
     aluno.style.top = "75%";
-    aluno.style.transition = ".5s";
     atividade.style.left = "50%";
     atividade.style.top = "85%";
-    atividade.style.transition = ".5s";
     disciplina.style.left = "75%";
     disciplina.style.top = "75%";
-    disciplina.style.transition = ".5s";
     turma.removeEventListener('click',turmaLarge)
 }
 
@@ -159,17 +167,11 @@ function atividade1() {
                                 <input type="text" id="nome" placeholder="Nome" required="required">
                                 <label for="turma">Turma</label>
                                 <select name="turma" id="turma">
-                                    <option value=""></option>
-                                    <option value="1">DEV-2</option>
-                                    <option value="2">Logística</option>
                                 </select>
                             </div>
                             <div class="inputs-2">
                                 <label for="materia">Matéria</label>
                                 <select name="materia" id="materia">
-                                    <option value="1">HTML</option>
-                                    <option value="2">CSS</option>
-                                    <option value="3">SQL</option>
                                 </select>
                                 <label for="semestre">Semestre</label>
                                 <select name="semestre" id="semestre">
@@ -188,17 +190,13 @@ function atividade1() {
     atividade.style.backgroundSize = "cover";
     atividade.style.width = "30vw";
     atividade.style.height = "45vh";
-    atividade.style.transition = ".5s";
     atividade.style.border=".3vw solid #D9D9D9";
     aluno.style.left = "25%";
     aluno.style.top = "75%";
-    aluno.style.transition = ".5s";
     turma.style.left = "75%";
     turma.style.top = "75%";
-    turma.style.transition = ".5s";
     disciplina.style.left = "50%";
     disciplina.style.top = "85%";
-    disciplina.style.transition = ".5s";
     atividade.removeEventListener('click',atividadeLarge)
 }
 
@@ -244,17 +242,13 @@ function disciplina1() {
     disciplina.style.backgroundSize = "cover";
     disciplina.style.width = "30vw";
     disciplina.style.height = "45vh";
-    disciplina.style.transition = ".5s";
     disciplina.style.border=".3vw solid #D9D9D9";
     aluno.style.left = "25%";
     aluno.style.top = "75%";
-    aluno.style.transition = ".5s";
     turma.style.left = "75%";
     turma.style.top = "75%";
-    turma.style.transition = ".5s";
     atividade.style.left = "50%";
     atividade.style.top = "85%";
-    atividade.style.transition = ".5s";
     disciplina.removeEventListener('click', disciplinaLarge)
 }
 

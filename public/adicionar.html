@@ -6,11 +6,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="adicionar.css">
 </head>
-<body>
+<body onload="Load()">
     <header>
-        <img src="img/Menu (1).png" alt="" id="menu">
+        <img src="Menu (1).png" alt="" id="menu">
         <img src="img/logo.png" alt="" id="logo">
-        <img src="" alt="" id="login">
+        <img src="img/" alt="" id="login">
         <a href="coloca.aqui.html" id="">Login</a>
     </header>
     <form class="alunos" id="alunos">
@@ -133,5 +133,75 @@
             alert('Erro ao enviar dados: ' + error.message);
         }
     });
+
+    async function carregarTurma() {
+    const select = document.getElementById('turma');
+    if (!select) {
+        console.error("Elemento 'turma' não encontrado no DOM");
+        return;
+    }
+
+    try {
+        const resposta = await fetch('http://localhost:3000/carregarTurmas');
+        if (resposta.ok) {
+            const turmas = await resposta.json();
+            select.innerHTML = '';  // Limpa as opções anteriores
+
+            const optionInicial = document.createElement('option');
+            optionInicial.value = '';
+            optionInicial.textContent = 'Selecione a turma';
+            select.appendChild(optionInicial);
+
+            turmas.forEach(turma => {
+                const option = document.createElement('option');
+                option.value = turma.turmaID;
+                option.textContent = turma.nomeTurma;
+                select.appendChild(option);
+            });
+        } else {
+            alert('Deu erro chefia.');
+        }
+    } catch (error) {
+        alert('Erro ao carregar as turmas: ' + error.message);
+    }
+}
+
+// Carregar as turmas assim que a página carregar
+aluno.onclick = carregarTurma;
+atividade.onclick = carregarTurma;
+atividade.onclick = carregarMaterias;
+
+async function carregarMaterias() {
+    const select = document.getElementById('materia');
+    if (!select) {
+        console.error("Elemento 'materia' não encontrado no DOM");
+        return;
+    }
+
+    try {
+        const resposta = await fetch('http://localhost:3000/carregarMaterias');
+        if (resposta.ok) {
+            const materias = await resposta.json();
+            select.innerHTML = '';  // Limpa as opções anteriores
+
+            const optionInicial = document.createElement('option');
+            optionInicial.value = '';
+            optionInicial.textContent = 'Selecione a matéria';
+            select.appendChild(optionInicial);
+
+            materias.forEach(materia => {
+                const option = document.createElement('option');
+                option.value = materia.materiaID;
+                option.textContent = materia.nomeMateria;
+                select.appendChild(option);
+            });
+        } else {
+            alert('Deu erro chefia.');
+        }
+    } catch (error) {
+        alert('Erro ao carregar as materias: ' + error.message);
+    }
+}
+
 </script>
 </html>

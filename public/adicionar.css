@@ -55,11 +55,11 @@ header{
 
 .alunos{
     position: absolute;
-    top: 35%;
-    left: 25%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 10vw;
-    height: 20vh;
+    width: 0vw;
+    height: 0vh;
     border: .3vw solid #B50709;
     border-radius: 2.5vw;
     background-color: #B50709;
@@ -67,6 +67,7 @@ header{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: .5s;
 
     & p{
         color: #fff;
@@ -189,11 +190,11 @@ header{
 
 .turmas{
     position: absolute;
-    top: 75%;
-    left: 25%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 10vw;
-    height: 20vh;
+    width: 0vw;
+    height: 0vh;
     border: .3vw solid #B50709;
     border-radius: 2.5vw;
     background-color: #B50709;
@@ -201,6 +202,7 @@ header{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: .5s;
 
     & p{
         color: #fff;
@@ -291,11 +293,11 @@ header{
 
 .atividades{
     position: absolute;
-    top: 35%;
-    left: 75%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 10vw;
-    height: 20vh;
+    width: 0vw;
+    height: 0vh;
     border: .3vw solid #B50709;
     border-radius: 2.5vw;
     background-color: #B50709;
@@ -303,6 +305,7 @@ header{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: .5s;
 
 
     & p{
@@ -438,11 +441,11 @@ header{
 
 .disciplinas{
     position: absolute;
-    top: 75%;
-    left: 75%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 10vw;
-    height: 20vh;
+    width: 0vw;
+    height: 0vh;
     border: .3vw solid #B50709;
     border-radius: 2.5vw;
     background-color: #B50709;
@@ -450,6 +453,7 @@ header{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: .5s;
 
     & p{
         color: #fff;
