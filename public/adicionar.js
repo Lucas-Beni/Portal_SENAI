@@ -64,6 +64,7 @@ function aluno1() {
     disciplina.style.left = "75%";
     disciplina.style.top = "75%";
     aluno.removeEventListener('click',alunoLarge)
+    aluno.removeEventListener('click',carregarTurma)
 }
 
 function aluno2() {
@@ -93,6 +94,12 @@ function alunoLarge (event){
     //     disciplina2();
     // }
 // });
+
+// (event) =>{
+// if (event.target.tagName !== 'SELECT'){
+//     carregarTurma()
+// }
+// }
 
 // Adiciona ouvintes diretamente
 
@@ -165,9 +172,8 @@ function atividade1() {
                             <div class="inputs-1">
                                 <label for="nome">Nome</label>
                                 <input type="text" id="nome" placeholder="Nome" required="required">
-                                <label for="turma">Turma</label>
-                                <select name="turma" id="turma">
-                                </select>
+                                <label for="descricao">Descrição</label>
+                                <input type="text" name="descricao" id="descricao">
                             </div>
                             <div class="inputs-2">
                                 <label for="materia">Matéria</label>
@@ -180,9 +186,6 @@ function atividade1() {
                                     <option value="3">Terceiro</option>
                                 </select>
                             </div>
-                            <div class="descricao">
-                                <label for="descricao">Descrição</label>
-                                <input type="text" name="descricao" id="descricao">
                             <button type="submit">Confirmar</button>`;
     atividade.style.left = "50%";
     atividade.style.top = "50%";

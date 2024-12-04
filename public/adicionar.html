@@ -166,11 +166,6 @@
     }
 }
 
-// Carregar as turmas assim que a página carregar
-aluno.onclick = carregarTurma;
-atividade.onclick = carregarTurma;
-atividade.onclick = carregarMaterias;
-
 async function carregarMaterias() {
     const select = document.getElementById('materia');
     if (!select) {
@@ -202,6 +197,10 @@ async function carregarMaterias() {
         alert('Erro ao carregar as materias: ' + error.message);
     }
 }
+
+// Carregar as turmas assim que a página carregar
+aluno.onmouseenter = carregarTurma;
+atividade.onmouseenter = carregarMaterias;
 
 </script>
 </html>
