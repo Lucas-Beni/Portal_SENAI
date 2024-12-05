@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cadastros.css">
+    <title>Cadastro Professores</title>
+</head>
+<body>
+
+    <!-- Logo Section -->
+    <div class="logo">
+        <img src="img/logo.png" alt="Logo">
+        <div class="barra"></div>
+        <p>Educação Profissional</p>
+    </div>
+
+    <!-- Cadastro Section -->
+    <div class="cadastro">
+        <p>Cadastro</p>
+        <form id="usuarioForm">
+            <div class="inputs">
+                <div class="Usuario">
+                    <span>Nome</span>
+                </div>
+                <input type="text" id="nome" required placeholder="Nome do usuário">
+
+                <div class="Senha">
+                    <span>Senha</span>
+                </div>
+                <input type="password" id="senha" required placeholder="Senha">
+
+                <div class="Email">
+                    <span>Email</span>
+                </div>
+                <input type="email" id="email" required placeholder="E-mail">
+            </div>
+            <button type="submit">Criar</button>
+        </form>
+    </div>
+
+    <!-- Link to login or other page -->
+    <a href="#">Já tem uma conta? Entrar</a>
+
+    <script>
+        document.getElementById('usuarioForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const usuario = {
+                nome: document.getElementById('nome').value,
+                senha: document.getElementById('senha').value,
+                email: document.getElementById('email').value
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/adicionar-produto', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(usuario)
+                });
+                const message = await response.text();
+                alert(message);
+            } catch (error) {
+                alert('Erro ao enviar dados: ' + error.message);
+            }
+        });
+    </script>
+
+</body>
+</html>

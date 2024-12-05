@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background-image: url(img/fundoLogin.jpg);
+    background-position: center;
+    margin: 0;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    width: 20vw;
+    justify-content: center;
+    align-items: center;
+
+    & img{
+        width: 10vw;
+    }
+
+    & .barra{
+        height: 6vh;
+        width: .3vw;
+        background-color: #626262;
+        margin-left: .5vw;
+        margin-right: .5vw;
+    }
+
+    & p{
+        width: 5vw;
+        font-size: 1vw;
+        color: #626262;
+        font-weight: bold;
+        font-family: "Inter";
+    }
+}
+
+.login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: 45vh;
+    border: .3vw solid #B50709;
+    border-radius: 2.5vw;
+    background-color: #fff;
+
+    & p{
+        font-weight: bold;
+        font-family: "Inter";
+        font-size: 1.2vw;
+        position: relative;
+        left: 2vw;
+        top: 2vh;
+        width: 3.5vw;
+    }
+
+    & .inputs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 30vw;
+        height: 55vh;
+        position: absolute;
+        top: 49%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        & input{
+            margin-bottom: 1.2vh;
+            margin-top: 1.2vh;
+            width: 20vw;
+            height: 5vh;
+            border-radius: .7vw;
+            border: none;
+            background-color: #D9D9D9;
+            text-indent: 1vw;
+            font-size: .8vw;
+        }
+        
+        & ::-webkit-input-placeholder{
+            color: #fff;
+            position: relative;
+            top: .3vh;
+            font-size: 1vw;
+        }
+    }
+
+    & button{
+        background-color: #4CBE3A;
+        border: none;
+        color: #fff;
+        width: 7vw;
+        height: 4vh;
+        border-radius: 1vw;
+        font-size: 1vw;
+        position: relative;
+        top: 27vh;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+    }
+
+    & a{
+        position: absolute;
+        top: 89%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-decoration: none;
+        color: #0bbeff;
+        font-family: "Inter";
+    }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Turmas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .turma-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .turma-item {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .turma-item input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lista de Turmas</h1>
+    <ul id="turma-list" class="turma-list">
+        <!-- As turmas serão inseridas aqui dinamicamente -->
+    </ul>
+
+    <script>
+        // Função para carregar as turmas da API
+        async function carregarTurmas() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarTurmas');
+                const turmas = await response.json();
+                console.log(turmas)
+                
+                const turmaList = document.getElementById('turma-list');
+                turmaList.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+
+                // Adiciona cada turma à lista
+                turmas.forEach(turma => {
+                    const li = document.createElement('li');
+                    li.classList.add('turma-item');
+
+                    // Adiciona o checkbox e o nome da turma
+                    li.innerHTML = `
+                        <input type="checkbox" id="turma-${turma.turmaID}">
+                        <label for="turma-${turma.turmaID}">${turma.nomeTurma}</label>
+                    `;
+
+                    turmaList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar turmas:', error);
+            }
+        }
+
+        // Chama a função para carregar as turmas quando a página carregar
+        window.onload = carregarTurmas;
+    </script>
+
+</body>
+</html>

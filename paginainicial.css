@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Moderustic:wght@300..800&display=swap');
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+header{
+    height: 15vh;
+    width: auto;
+    background-color: #FF2A1F;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+    #logo{
+        width: 11.5vw;
+        display: flex;
+        position: absolute;
+        left: 10vw;
+    }
+
+    #login{
+        width: 4.5vw;
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        right: 3vw;
+    }
+
+    #menu{
+        width: 5.5vw;
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        left: 1.8vw;
+    }
+
+    .direcionar a{
+        position: absolute;
+        top: 6.5vh;
+        right: 8.25vw;
+        text-decoration: none;
+        color: white;
+        font-size: 1.05vw;
+        font-family: "Inter", sans-serif;
+        font-weight: 790;
+    }
+  }
+
+
+
+
+  .turmas img{
+    width: 12.5vw;
+    position: absolute;
+    left: 30vw;
+    top: 20vh
+}
+
+.turmas_fundo img{
+    width: 26vw;
+    background-size: cover;
+    filter: brightness(85%);
+    border-radius: 1.8vw;
+    display: flex;
+    position: absolute; 
+    left: 23.45vw;
+    bottom: 48.7vh;
+    z-index: -100;
+
+}
+
+
+.turmas p{
+    width: 10vw;
+    font-size: 1.40vw;
+    font-family: "Inter", sans-serif;
+    font-weight: 790;
+    position: absolute;
+    left: 33.8vw;
+    top: 42vh;
+}
+
+
+
+
+
+
+.adicionar img{
+    width: 9vw;
+    position: absolute;
+    left: 60.55vw;
+    top: 25vh;
+}
+
+.adicionar_fundo img{
+    width: 26vw;
+    background-size: cover;
+    filter: brightness(85%);
+    border-radius: 1.8vw;
+    display: flex;
+    position: absolute; 
+    left: 52vw;
+    bottom: 48.7vh;
+    z-index: -100;
+
+}
+
+
+.adicionar p{
+    width: 15vw;
+    font-size: 1.40vw;
+    font-family: "Inter", sans-serif;
+    font-weight: 790;
+    position: absolute;
+    left: 59.5vw;
+    bottom: 48.7vh;
+}
+
+
+
+
+
+.alunos img{
+    width: 14vw;
+    position: absolute;
+    left: 43.2vw;
+    bottom: 15vh;
+}
+
+.alunos_fundo img{
+    width:55vw;
+    height: 19vw;
+    background-size: cover;
+    filter: brightness(85%);
+    border-radius: 1.8vw;
+    display: flex;
+    position: absolute; 
+    left: 23vw;
+    bottom: 8vh;
+    z-index: -100;
+
+}
+
+
+.alunos p{
+    width: 10vw;
+    font-size: 1.40vw;
+    font-family: "Inter", sans-serif;
+    font-weight: 790;
+    position: absolute;
+    left: 45.75vw;
+    bottom: 8vh;
+}
+
+
+
+
+
+
+/* Hover no container (imagem e texto) */
+.container .turmas img,
+.container .adicionar img,
+.container .alunos img {
+    transition: transform 0.3s ease, filter 0.3s ease; /* Adiciona transição suave */
+}
+
+.container .turmas p,
+.container .adicionar p,
+.container .alunos p {
+    transition: color 0.3s ease, transform 0.3s ease; /* Transição suave para o texto */
+}
+
+/* Efeito de hover nas imagens */
+.container .turmas img:hover,
+.container .adicionar img:hover,
+.container .alunos img:hover {
+    transform: scale(1.1); /* Aumenta o tamanho da imagem */
+    filter: brightness(65%); /* Escurece a imagem */
+}
+
+/* Efeito de hover nos textos */
+.container .turmas p:hover,
+.container .adicionar p:hover,
+.container .alunos p:hover {
+    color: #FF2A1F; /* Altera a cor do texto */
+    transform: translateY(-5px); /* Pequeno deslocamento para cima */
+}
+
+/* Se quiser aplicar o hover no fundo também */
+.container .turmas_fundo img:hover,
+.container .adicionar_fundo img:hover,
+.container .alunos_fundo img:hover {
+    filter: brightness(65%); /* Escurece o fundo */
+}
+
+
+
+
+a {
+    color: #000; 
+    text-decoration: none;
+}
+
+
+
+
+a:hover {
+    color: #FF2A1F; 
+}
+
+
+
+/*JS estilização*/
+
+  
+  /* Estilo do menu lateral */
+.side-menu {
+    width: 0;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FF2A1F;
+    overflow-x: hidden;
+    transition: 0.5s; 
+    z-index: 1000;
+    padding-top: 13vh; /* Espaço superior para o conteúdo */
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu ul li {
+    margin: 2.5vh 0; /* Determina o Espaçamento dos button */
+    text-align: center;
+}
+
+.side-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-family: "Inter", sans-serif;
+    display: block;
+}
+
+
+
+
+
+/* Estilo para quando o menu estiver aberto */
+.side-menu.open {
+    width: 12vw;
+}
+
+
+
+
+/* Botão de fechamento centralizado */
+.close-menu {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    font-size: 2.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+
+
+
+@media (max-width: 1024px) {
+
+    /* Reduzindo o tamanho do logo e outros elementos para telas menores */
+    #logo {
+        width: 20vw;
+        left: 8vw;
+    }
+
+    /* Ajustando o menu */
+    #menu {
+        width: 6vw;
+        left: 3vw;
+    }
+
+    /* Ajuste da imagem de turmas */
+    .turmas img {
+        width: 18vw;
+        left: 25vw;
+    }
+
+    .turmas p {
+        font-size: 1.2vw;
+        left: 28vw;
+    }
+
+    /* Ajuste da imagem de adicionar dados */
+    .adicionar img {
+        width: 13vw;
+        left: 50vw;
+    }
+
+    .adicionar p {
+        font-size: 1.2vw;
+        left: 55vw;
+    }
+
+    /* Ajuste da imagem de alunos */
+    .alunos img {
+        width: 15vw;
+        left: 35vw;
+    }
+
+    .alunos p {
+        font-size: 1.2vw;
+        left: 40vw;
+    }
+
+    /* Ajustes no menu lateral */
+    .side-menu {
+        width: 70%;
+        padding-top: 10vh;
+    }
+
+    .side-menu.open {
+        width: 60%;
+    }
+
+    .side-menu ul li a {
+        font-size: 1.2rem;
+    }
+
+    /* Ajuste do botão de fechamento */
+    .close-menu {
+        font-size: 2.5rem;
+    }
+}
+
+/* Media Queries para dispositivos móveis menores que 768px */
+@media (max-width: 768px) {
+    header {
+        height: 12vh;
+    }
+
+    #logo {
+        width: 25vw;
+    }
+
+    #login {
+        width: 7vw;
+    }
+
+    #menu {
+        width: 7vw;
+    }
+
+    .turmas img,
+    .adicionar img,
+    .alunos img {
+        width: 30vw;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .turmas p,
+    .adicionar p,
+    .alunos p {
+        font-size: 2vw;
+        text-align: center;
+    }
+}

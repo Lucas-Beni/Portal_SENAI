@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div class="logo">
+        <img src="img/logo-Inicial.png" alt="">
+        <div class="barra"></div>
+        <p>Educação Profissional</p>
+    </div>
+
+    <div class="login">
+        <p>Login</p>
+        
+        <div class="inputs">
+            <input type="text" id="username" placeholder="Usuário">
+            <input type="password" id="password" placeholder="Senha">
+            <input type="email" id="email" placeholder="E-mail">
+        </div>
+        
+        <button id="loginBtn">Entrar</button>
+        <a href="cadastro.html">Não tem uma Conta?</a>
+    </div>
+
+
+    <script>
+        // Recupera o usuário atual do sessionStorage
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+        if (currentUser) {
+            // Exibe mensagem de boas-vindas
+            document.getElementById("welcomeMessage").innerText = `Bem-vindo, ${currentUser.username}!`;
+
+            // Exibe dados exclusivos do usuário
+            const userDataDiv = document.getElementById("userData");
+            if (currentUser.username === "admin") {
+                userDataDiv.innerHTML = `<p>Você é o administrador. Aqui estão seus dados privilegiados.</p>`;
+            } else if (currentUser.username === "user1") {
+                userDataDiv.innerHTML = `<p>Você é um usuário comum. Aqui estão seus dados personalizados.</p>`;
+            }
+        } else {
+            // Caso não haja usuário autenticado
+            document.getElementById("welcomeMessage").innerText = "Usuário não autenticado.";
+        }
+
+        // Função de logout
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            sessionStorage.removeItem("currentUser");
+            window.location.href = "index.html"; // Redireciona para a página de login
+        });
+    </script>
+
+
+</body>
+<script src="script.js"></script>
+
+</html>
