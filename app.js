@@ -19,6 +19,28 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public')); // Serve arquivos estáticos da pasta 'public'
 
+
+//CADASTRO
+app.post('/adicionar-professor', async (req, res) => {
+    const { nome, senha, email } = req.body;  
+    try {
+        await sql.connect(dbConfig);
+        const query = `
+            INSERT INTO dimProfessores (nomeProfessor, Senha, emailProfessor)
+            VALUES (@nome, @senha, @email)
+        `;
+        const request = new sql.Request();
+        request.input('nome', sql.NVarChar, nome);
+        request.input('senha', sql.NVarChar, senha); 
+        request.input('email', sql.NVarChar, email); 
+        await request.query(query);
+        res.send('Usuário adicionado com sucesso!'); 
+    } catch (error) {
+        res.status(500).send('Erro ao adicionar usuário: ' + error.message);
+    }
+});
+
+
 // Alunos
 app.post('/adicionar-aluno', async (req, res) => {
     const {nomeAluno, cpfAluno, telefoneAluno, turmaID, emailAluno, foto } = req.body;

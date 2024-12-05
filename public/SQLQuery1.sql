@@ -42,8 +42,8 @@ CREATE TABLE dimMaterias (
 CREATE TABLE dimProfessores (
     professorID INT PRIMARY KEY NOT NULL IDENTITY (1,1), -- ID do professor, com auto-incremento
     nomeProfessor NVARCHAR(30) NOT NULL, -- Nome do professor
-    emailProfessor NVARCHAR(70) NOT NULL UNIQUE, -- E-mail do professor, único
-    senha NVARCHAR(20) -- Senha do professor
+    Senha NVARCHAR(20), -- Senha do professor
+    emailProfessor NVARCHAR(70) NOT NULL UNIQUE -- E-mail do professor, único
 )
 
 -- Cria a tabela "dimTurmas", que armazena informações sobre as turmas
