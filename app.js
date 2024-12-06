@@ -109,6 +109,29 @@ app.post('/adicionar-materia', async (req, res) => {
     }
 });
 
+//Atividades
+app.post('/adicionar-atividade', async (req, res) => {
+    const {nomeAtividade, materiaID, semestre, descricao} = req.body;
+
+    try {
+        await sql.connect(dbConfig);
+        const query = `
+            INSERT INTO dimAtividades (nomeAtividade, materiaID, semestre, descricao)
+            VALUES ( @nomeAtividade, @materiaID, @semestre, @descricao)
+        `;
+        const request = new sql.Request();
+        request.input('nomeAtividade', sql.NVarChar, nomeAtividade);
+        request.input('materiaID', sql.Int, materiaID);
+        request.input('semestre', sql.Int, semestre);
+        request.input('descricao', sql.NVarChar, descricao);
+        await request.query(query);
+
+        res.send('Produto adicionado com sucesso!');
+    } catch (error) {
+        res.status(500).send('Erro ao adicionar produto: ' + error.message);
+    }
+});
+
 //TESTE
 app.get('/carregarTurmas', async (req, res) => {
     try {
@@ -151,6 +174,26 @@ app.get('/carregarMaterias', async (req, res) => {
     }
 });
 
+app.get('/carregarAtividades', async (req, res) => {
+    try {
+        // Conectar ao banco
+        await sql.connect(dbConfig);
+
+        const query = `SELECT atividadeID, nomeAtividade FROM dimAtividades`;
+
+        const result = await new sql.Request().query(query);
+
+        // Retornar as turmas como JSON
+        res.json(result.recordset);
+
+    } catch (err) {
+        console.error('Erro ao conectar ou buscar dados:', err);
+        res.status(500).send('Erro ao buscar matérias');
+    } finally {
+        sql.close();
+    }
+});
+
 app.post('/associarMateriaTurmas', async (req, res) => {
     const { materiaID, turmaIDs } = req.body;
 
@@ -169,6 +212,37 @@ app.post('/associarMateriaTurmas', async (req, res) => {
             const query = `
                 INSERT INTO materiasTurmas (materiaID, turmaID)
                 VALUES (@materiaID, @turmaID)
+            `;
+            await request.query(query);
+        }
+
+        res.send('Matéria associada às turmas selecionadas com sucesso!');
+    } catch (error) {
+        console.error('Erro ao associar matéria às turmas:', error);
+        res.status(500).send('Erro ao associar matéria às turmas.');
+    } finally {
+        sql.close();
+    }
+});
+
+app.post('/associarAtividadeTurmas', async (req, res) => {
+    const { atividadeID, turmaIDs } = req.body;
+
+    if (!atividadeID || !Array.isArray(turmaIDs) || turmaIDs.length === 0) {
+        return res.status(400).send('Dados inválidos.');
+    }
+
+    try {
+        await sql.connect(dbConfig);
+
+        for (const turmaID of turmaIDs) {
+            const request = new sql.Request(); // Cria uma nova instância para cada iteração
+            request.input('atividadeID', sql.Int, atividadeID);
+            request.input('turmaID', sql.Int, turmaID);
+
+            const query = `
+                INSERT INTO atividadesTurmas (atividadeID, turmaID)
+                VALUES (@atividadeID, @turmaID)
             `;
             await request.query(query);
         }

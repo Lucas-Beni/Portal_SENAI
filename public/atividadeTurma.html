@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="atividadeTurma.css">
+    <title>Lista de Turmas</title>
+</head>
+<body>
+
+    <h1>Lista de Turmas</h1>
+    <select name="atividade" id="atividade">
+    </select>
+    <ul id="turma-list" class="turma-list">
+        <!-- As turmas serão inseridas aqui dinamicamente -->
+    </ul>
+    <button id="associar">Associar Atividade às Turmas</button>
+
+    <script>
+        // Função para carregar atividades no select
+        async function carregarAtividades() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarAtividades');
+                const atividades = await response.json();
+                const select = document.getElementById('atividade');
+                select.innerHTML = ''; // Limpa as opções anteriores
+
+                const optionInicial = document.createElement('option');
+                optionInicial.value = '';
+                optionInicial.textContent = 'Selecione a atividade';
+                select.appendChild(optionInicial);
+
+                atividades.forEach(atividade => {
+                    const option = document.createElement('option');
+                    option.value = atividade.atividadeID;
+                    option.textContent = atividade.nomeAtividade;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar atividade:', error);
+            }
+        }
+
+        // Função para carregar turmas na lista
+        async function carregarTurmas() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarTurmas');
+                const turmas = await response.json();
+                const turmaList = document.getElementById('turma-list');
+                turmaList.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+
+                turmas.forEach(turma => {
+                    const li = document.createElement('li');
+                    li.classList.add('turma-item');
+                    li.innerHTML = `
+                        <input type="checkbox" id="turma-${turma.turmaID}" value="${turma.turmaID}">
+                        <label for="turma-${turma.turmaID}">${turma.nomeTurma}</label>
+                    `;
+                    turmaList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar turmas:', error);
+            }
+        }
+
+        // Função para associar matéria às turmas selecionadas
+        async function associarAtividade() {
+            const atividadeID = document.getElementById('atividade').value;
+            if (!atividadeID) {
+                alert('Por favor, selecione uma matéria.');
+                return;
+            }
+
+            const checkboxes = document.querySelectorAll('#turma-list input[type="checkbox"]:checked');
+            const turmaIDs = Array.from(checkboxes).map(cb => cb.value);
+
+            if (turmaIDs.length === 0) {
+                alert('Por favor, selecione pelo menos uma turma.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/associarAtividadeTurmas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ atividadeID, turmaIDs }),
+                });
+
+                if (response.ok) {
+                    alert('Atividade associada com sucesso!');
+                } else {
+                    throw new Error('Erro ao associar atividade.');
+                }
+            } catch (error) {
+                console.error('Erro ao associar atividade:', error);
+                alert('Erro ao associar atividade: ' + error.message);
+            }
+        }
+
+        // Carrega matérias e turmas ao carregar a página
+        window.onload = () => {
+            carregarAtividades();
+            carregarTurmas();
+
+            const btnAssociar = document.getElementById('associar');
+            btnAssociar.addEventListener('click', associarAtividade);
+        };
+    </script>
+
+</body>
+</html>

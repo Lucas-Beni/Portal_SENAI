@@ -1,5 +1,5 @@
 -- Exclui o banco de dados "SistemaEscolar" caso ele já exista
-DROP DATABASE SistemaEscolar
+DROP DATABASE sistemaEscolar
 GO
 
 -- Cria o banco de dados "sistemaEscolar"
@@ -80,6 +80,12 @@ CREATE TABLE materiasTurmas(
     turmaID INT NOT NULL -- ID da turma
 )
 
+CREATE TABLE atividadesTurmas (
+    atID INT PRIMARY KEY NOT NULL IDENTITY (1,1), -- ID da associação, com auto-incremento
+    atividadeID INT NOT NULL, -- ID da atividade
+    turmaID INT NOT NULL -- ID da turma
+)
+
 -- Cria a tabela "professoresTurmas", que associa professores com turmas
 CREATE TABLE professoresTurmas (
     ptID INT PRIMARY KEY NOT NULL IDENTITY (1,1), -- ID da associação, com auto-incremento
@@ -139,6 +145,17 @@ GO
 -- Adiciona a chave estrangeira entre a tabela "materiasTurmas" e a tabela "dimTurmas"
 ALTER TABLE materiasTurmas
 ADD CONSTRAINT FK_materiasTurmas_dimTurmas FOREIGN KEY (turmaID)
+REFERENCES dimTurmas(turmaID)
+GO
+
+ALTER TABLE atividadesTurmas
+ADD CONSTRAINT FK_atividadesTurmas_dimAtividades FOREIGN KEY (atividadeID)
+REFERENCES dimAtividades(atividadeID)
+GO
+
+-- Adiciona a chave estrangeira entre a tabela "materiasTurmas" e a tabela "dimTurmas"
+ALTER TABLE atividadesTurmas
+ADD CONSTRAINT FK_atividadesTurmas_dimTurmas FOREIGN KEY (turmaID)
 REFERENCES dimTurmas(turmaID)
 GO
 
