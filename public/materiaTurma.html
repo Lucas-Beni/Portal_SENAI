@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="materiaTurma.css">
+    <title>Lista de Turmas</title>
+</head>
+<body>
+
+    <h1>Lista de Turmas</h1>
+    <select name="materia" id="materia">
+    </select>
+    <ul id="turma-list" class="turma-list">
+        <!-- As turmas serão inseridas aqui dinamicamente -->
+    </ul>
+    <button id="associar">Associar Matéria às Turmas</button>
+
+    <script>
+        // Função para carregar matérias no select
+        async function carregarMaterias() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarMaterias');
+                const materias = await response.json();
+                const select = document.getElementById('materia');
+                select.innerHTML = ''; // Limpa as opções anteriores
+
+                const optionInicial = document.createElement('option');
+                optionInicial.value = '';
+                optionInicial.textContent = 'Selecione a matéria';
+                select.appendChild(optionInicial);
+
+                materias.forEach(materia => {
+                    const option = document.createElement('option');
+                    option.value = materia.materiaID;
+                    option.textContent = materia.nomeMateria;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar matérias:', error);
+            }
+        }
+
+        // Função para carregar turmas na lista
+        async function carregarTurmas() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarTurmas');
+                const turmas = await response.json();
+                const turmaList = document.getElementById('turma-list');
+                turmaList.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+
+                turmas.forEach(turma => {
+                    const li = document.createElement('li');
+                    li.classList.add('turma-item');
+                    li.innerHTML = `
+                        <input type="checkbox" id="turma-${turma.turmaID}" value="${turma.turmaID}">
+                        <label for="turma-${turma.turmaID}">${turma.nomeTurma}</label>
+                    `;
+                    turmaList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar turmas:', error);
+            }
+        }
+
+        // Função para associar matéria às turmas selecionadas
+        async function associarMateria() {
+            const materiaID = document.getElementById('materia').value;
+            if (!materiaID) {
+                alert('Por favor, selecione uma matéria.');
+                return;
+            }
+
+            const checkboxes = document.querySelectorAll('#turma-list input[type="checkbox"]:checked');
+            const turmaIDs = Array.from(checkboxes).map(cb => cb.value);
+
+            if (turmaIDs.length === 0) {
+                alert('Por favor, selecione pelo menos uma turma.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/associarMateriaTurmas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ materiaID, turmaIDs }),
+                });
+
+                if (response.ok) {
+                    alert('Matéria associada com sucesso!');
+                } else {
+                    throw new Error('Erro ao associar matéria.');
+                }
+            } catch (error) {
+                console.error('Erro ao associar matéria:', error);
+                alert('Erro ao associar matéria: ' + error.message);
+            }
+        }
+
+        // Carrega matérias e turmas ao carregar a página
+        window.onload = () => {
+            carregarMaterias();
+            carregarTurmas();
+
+            const btnAssociar = document.getElementById('associar');
+            btnAssociar.addEventListener('click', associarMateria);
+        };
+    </script>
+
+</body>
+</html>

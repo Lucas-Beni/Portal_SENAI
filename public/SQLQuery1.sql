@@ -25,7 +25,7 @@ CREATE TABLE dimAlunos (
 CREATE TABLE dimAtividades (
     atividadeID INT PRIMARY KEY NOT NULL IDENTITY (1,1), -- ID da atividade, com auto-incremento
     nomeAtividade NVARCHAR(30) NOT NULL, -- Nome da atividade
-    turmaID INT NOT NULL, -- ID da turma
+    turmaID INT, -- ID da turma
     materiaID INT NOT NULL, -- ID da matéria relacionada à atividade
     alunoID INT,-- ID do aluno relacionado à atividade
 	semestre INT NOT NULL, 
@@ -42,8 +42,8 @@ CREATE TABLE dimMaterias (
 CREATE TABLE dimProfessores (
     professorID INT PRIMARY KEY NOT NULL IDENTITY (1,1), -- ID do professor, com auto-incremento
     nomeProfessor NVARCHAR(30) NOT NULL, -- Nome do professor
-    Senha NVARCHAR(20), -- Senha do professor
-    emailProfessor NVARCHAR(70) NOT NULL UNIQUE -- E-mail do professor, único
+    emailProfessor NVARCHAR(70) NOT NULL UNIQUE, -- E-mail do professor, único
+    senha NVARCHAR(20) -- Senha do professor
 )
 
 -- Cria a tabela "dimTurmas", que armazena informações sobre as turmas
