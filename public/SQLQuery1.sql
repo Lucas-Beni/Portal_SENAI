@@ -18,7 +18,7 @@ CREATE TABLE dimAlunos (
     telefoneAluno NVARCHAR(10) NOT NULL UNIQUE, -- Telefone do aluno, único
 	emailAluno NVARCHAR(50) NOT NULL UNIQUE,
     turmaID INT NOT NULL, -- ID da turma a qual o aluno pertence
-    foto VARBINARY(MAX) NOT NULL -- Foto do aluno (armazenada em formato binário)
+    foto VARBINARY(MAX) -- Foto do aluno (armazenada em formato binário)
 )
 
 -- Cria a tabela "dimAtividades", que armazena informações sobre as atividades dos alunos
@@ -173,6 +173,7 @@ GO
 
 SELECT * FROM dimAlunos
 SELECT * FROM dimTurmas
+SELECT * FROM dimAtividades		
 
 USE sistemaEscolar; -- Substitua pelo nome do seu banco de dados
 GO
@@ -183,3 +184,15 @@ GO
 ALTER ROLE db_datareader ADD MEMBER [appUser];
 ALTER ROLE db_datawriter ADD MEMBER [appUser];
 GO
+
+SELECT
+	dimAtividades.nomeAtividade,
+	dimTurmas.nomeTurma
+FROM
+	atividadesTurmas
+INNER JOIN dimAtividades
+	ON dimAtividades.atividadeID = atividadesTurmas.atividadeID
+INNER JOIN dimTurmas
+	ON dimTurmas.turmaID = atividadesTurmas.turmaID
+
+INSERT INTO dimAlunos (nomeAluno, cpfAluno, telefoneAluno, emailAluno, turmaID)

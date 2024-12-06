@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Presenças</title>
+    <link rel="stylesheet" href="frequencia.css">
+</head>
+
+<body>
+    <header>
+        <img src="img/menu (1).png" alt="Menu" id="menu">
+        <img src="img/logo.png" alt="Logo" id="logo">
+        <img src="img/login (1).png" alt="Login" id="login">
+        <div class="direcionar"><a href="login.html">Login</a></div>
+    </header>
+
+    <!-- Menu lateral -->
+    <div id="sideMenu" class="side-menu">
+        <button id="closeMenu" class="close-menu">X</button>
+        <ul>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="turmas.html">Turmas</a></li>
+            <li><a href="adicionar.html">Adicionar</a></li>
+            <li><a href="index.html">Sair</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <h1>Gerenciar Presenças</h1>
+        <!-- Formulário de seleção -->
+        <form id="frequenciaForm">
+            <label for="turma">Selecione a Turma:</label>
+            <select id="turma" name="turma" required>
+                <!-- Carregado dinamicamente -->
+            </select>
+
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required>
+
+            <button type="button" id="carregarAlunos">Carregar Alunos</button>
+        </form>
+
+        <!-- Tabela de Presenças -->
+        <table id="tabelaPresencas">
+            <thead>
+                <tr>
+                    <th>Aluno</th>
+                    <th>Presença</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Preenchido dinamicamente -->
+            </tbody>
+        </table>
+
+        <button type="button" id="salvarFrequencia">Salvar Frequências</button>
+    </main>
+
+    <script>
+        const ALUNOS_URL = "http://localhost:3000/alunos";
+        const FREQUENCIA_URL = "http://localhost:3000/frequencia";
+
+        // Carregar turmas ao carregar a página
+        async function carregarTurma() {
+    const select = document.getElementById('turma');
+    if (!select) {
+        console.error("Elemento 'turma' não encontrado no DOM");
+        return;
+    }
+
+    try {
+        const resposta = await fetch('http://localhost:3000/carregarTurmas');
+        if (resposta.ok) {
+            const turmas = await resposta.json();
+            select.innerHTML = '';  // Limpa as opções anteriores
+
+            const optionInicial = document.createElement('option');
+            optionInicial.value = '';
+            optionInicial.textContent = 'Selecione a turma';
+            select.appendChild(optionInicial);
+
+            turmas.forEach(turma => {
+                const option = document.createElement('option');
+                option.value = turma.turmaID;
+                option.textContent = turma.nomeTurma;
+                select.appendChild(option);
+            });
+        } else {
+            alert('Deu erro chefia.');
+        }
+    } catch (error) {
+        alert('Erro ao carregar as turmas: ' + error.message);
+    }
+}
+
+        // Carregar alunos ao clicar no botão
+        document.getElementById('carregarAlunos').addEventListener('click', async () => {
+            const turmaID = document.getElementById('turma').value;
+            const tabelaBody = document.querySelector('#tabelaPresencas tbody');
+
+            tabelaBody.innerHTML = ''; // Limpar tabela
+
+            try {
+                const response = await fetch(`${ALUNOS_URL}?turmaID=${turmaID}`);
+                if (response.ok) {
+                    const alunos = await response.json();
+
+                    alunos.forEach(aluno => {
+                        const row = document.createElement('tr');
+
+                        const nomeCell = document.createElement('td');
+                        nomeCell.textContent = aluno.nomeAluno;
+                        row.appendChild(nomeCell);
+
+                        const presencaCell = document.createElement('td');
+                        const select = document.createElement('select');
+                        select.innerHTML = `
+                            <option value="P">Presente</option>
+                            <option value="A">Ausente</option>
+                        `;
+                        presencaCell.appendChild(select);
+                        row.appendChild(presencaCell);
+
+                        tabelaBody.appendChild(row);
+                    });
+                } else {
+                    alert('Erro ao carregar alunos.');
+                }
+            } catch (error) {
+                console.error('Erro ao carregar alunos:', error);
+            }
+        });
+
+        // Salvar frequência
+        document.getElementById('salvarFrequencia').addEventListener('click', async () => {
+            const turmaID = document.getElementById('turma').value;
+            const data = document.getElementById('data').value;
+            const tabelaBody = document.querySelector('#tabelaPresencas tbody');
+            const registros = [];
+
+            tabelaBody.querySelectorAll('tr').forEach(row => {
+                const nomeAluno = row.children[0].textContent;
+                const presenca = row.children[1].querySelector('select').value;
+                registros.push({ nomeAluno, presenca, data });
+            });
+
+            try {
+                const response = await fetch(FREQUENCIA_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ turmaID, registros }),
+                });
+                if (response.ok) {
+                    alert('Frequências salvas com sucesso.');
+                } else {
+                    alert('Erro ao salvar frequências.');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar frequências:', error);
+            }
+        });
+
+        // Carregar turmas ao carregar a página
+        window.onload = carregarTurma;
+    </script>
+</body>
+
+</html>

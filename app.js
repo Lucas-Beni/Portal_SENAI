@@ -256,6 +256,32 @@ app.post('/associarAtividadeTurmas', async (req, res) => {
     }
 });
 
+// Rota para obter os alunos de uma turma
+app.get("/alunos", async (req, res) => {
+    const turmaID = parseInt(req.query.turmaID, 10);
+
+    // Verifica se o ID da turma é válido
+    if (!turmaID || turmaID <= 0) {
+        return res.status(400).json({ error: "ID da turma inválido" });
+    }
+
+    try {
+        // Conecta ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Consulta para obter os alunos da turma
+        const result = await pool.request()
+            .input('turmaID', sql.Int, turmaID) // Substitui o `?` pelo parâmetro
+            .query('SELECT alunoID, nomeAluno FROM dimAlunos WHERE turmaID = @turmaID');
+
+        // Retorna os alunos ou um array vazio
+        res.json(result.recordset); // `recordset` contém as linhas retornadas
+    } catch (err) {
+        console.error("Erro ao consultar o banco de dados:", err);
+        res.status(500).json({ error: "Erro no servidor" });
+    }
+});
+
 
 
 app.listen(port, () => {
