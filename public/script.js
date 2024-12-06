@@ -1,6 +1,6 @@
 // Definição de dois usuários
-const user1 = { username: "Vagner", password: "123", email: "vagner@example.com" };
-const user2 = { username: "Oderlei", password: "123", email: "oderlei@example.com" };
+const user1 = { username: "admin", password: "admin123", email: "admin@example.com" };
+const user2 = { username: "user1", password: "user123", email: "user1@example.com" };
 
 document.getElementById("loginBtn").addEventListener("click", () => {
     const username = document.getElementById("username").value.trim();

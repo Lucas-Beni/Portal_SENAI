@@ -151,6 +151,39 @@ app.get('/carregarMaterias', async (req, res) => {
     }
 });
 
+app.post('/associarMateriaTurmas', async (req, res) => {
+    const { materiaID, turmaIDs } = req.body;
+
+    if (!materiaID || !Array.isArray(turmaIDs) || turmaIDs.length === 0) {
+        return res.status(400).send('Dados inválidos.');
+    }
+
+    try {
+        await sql.connect(dbConfig);
+
+        for (const turmaID of turmaIDs) {
+            const request = new sql.Request(); // Cria uma nova instância para cada iteração
+            request.input('materiaID', sql.Int, materiaID);
+            request.input('turmaID', sql.Int, turmaID);
+
+            const query = `
+                INSERT INTO materiasTurmas (materiaID, turmaID)
+                VALUES (@materiaID, @turmaID)
+            `;
+            await request.query(query);
+        }
+
+        res.send('Matéria associada às turmas selecionadas com sucesso!');
+    } catch (error) {
+        console.error('Erro ao associar matéria às turmas:', error);
+        res.status(500).send('Erro ao associar matéria às turmas.');
+    } finally {
+        sql.close();
+    }
+});
+
+
+
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });

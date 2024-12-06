@@ -52,7 +52,7 @@
             alert('Erro ao enviar dados: ' + error.message);
         }
     });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     document.getElementById('turmas').addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -73,14 +73,13 @@
             alert('Erro ao enviar dados: ' + error.message);
         }
     });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     document.getElementById('atividades').addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const atividade = {
             nomeAtividade: document.getElementById('nome').value,
             materiaID: document.getElementById('materia').value,
-            turmaID: document.getElementById('turma').value,
             semestre: document.getElementById('semestre').value,
             descricao: document.getElementById('descricao').value
         };
@@ -92,12 +91,28 @@
                 body: JSON.stringify(atividade)
             });
             const message = await response.text();
-            alert(message);
+            Swal.fire({
+            title: "Atividade adicionada com sucesso!",
+            text: "Você gostaria de adicionar essa atividade em alguma turma?",
+            showConfirmButton: true,
+            showDenyButton: true,
+            confirmButtonText: `Sim`,
+            denyButtonText: `Não`,
+            imageUrl: "img/logo.png",
+            imageWidth: 400,
+            imageHeight: 150,
+            imageAlt: "Custom image"
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                // Redireciona para a nova página
+                window.location.href = "aaa.html";  // Substitua pelo link para onde você deseja redirecionar
+            }
+});
         } catch (error) {
             alert('Erro ao enviar dados: ' + error.message);
         }
     });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     document.getElementById('disciplinas').addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -126,14 +141,14 @@
         }).then(function(result) {
             if (result.isConfirmed) {
                 // Redireciona para a nova página
-                window.location.href = "aaa.html";  // Substitua pelo link para onde você deseja redirecionar
+                window.location.href = "materiaTurma.html";  // Substitua pelo link para onde você deseja redirecionar
             }
 });
         } catch (error) {
             alert('Erro ao enviar dados: ' + error.message);
         }
     });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     async function carregarTurma() {
     const select = document.getElementById('turma');
     if (!select) {
@@ -165,7 +180,7 @@
         alert('Erro ao carregar as turmas: ' + error.message);
     }
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function carregarMaterias() {
     const select = document.getElementById('materia');
     if (!select) {
@@ -197,7 +212,7 @@ async function carregarMaterias() {
         alert('Erro ao carregar as materias: ' + error.message);
     }
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Carregar as turmas assim que a página carregar
 aluno.onmouseenter = carregarTurma;
 atividade.onmouseenter = carregarMaterias;
