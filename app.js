@@ -7,7 +7,7 @@ const port = 3000;
 // Configuração do banco de dados
 const dbConfig = {
     user: 'appUser',
-    password: 'SenhaForte@123',
+    password: '1',
     server: '127.0.0.1',
     database: 'sistemaEscolar',
     options: {
@@ -96,10 +96,9 @@ app.post("/frequencias", async (req, res) => {
     }
 });
 
-// 4. Rota para cadastrar um professor
+//CADASTRO
 app.post('/adicionar-professor', async (req, res) => {
     const { nome, senha, email } = req.body;  
-
     try {
         await sql.connect(dbConfig);
         const query = `
@@ -117,15 +116,16 @@ app.post('/adicionar-professor', async (req, res) => {
     }
 });
 
-// 5. Rota para cadastrar um aluno
+
+// Alunos
 app.post('/adicionar-aluno', async (req, res) => {
-    const { nomeAluno, cpfAluno, telefoneAluno, turmaID, emailAluno, foto } = req.body;
+    const {nomeAluno, cpfAluno, telefoneAluno, turmaID, emailAluno, foto } = req.body;
 
     try {
         await sql.connect(dbConfig);
         const query = `
             INSERT INTO dimAlunos (nomeAluno, cpfAluno, telefoneAluno, turmaID, emailAluno, foto)
-            VALUES (@nomeAluno, @cpfAluno, @telefoneAluno, @turmaID, @emailAluno, @foto)
+            VALUES ( @nomeAluno, @cpfAluno, @telefoneAluno, @turmaID, @emailAluno, @foto)
         `;
         const request = new sql.Request();
         request.input('nomeAluno', sql.NVarChar, nomeAluno);
@@ -136,22 +136,22 @@ app.post('/adicionar-aluno', async (req, res) => {
         request.input('foto', sql.VarBinary, foto);
         await request.query(query);
 
-        res.send('Aluno adicionado com sucesso!');
+        res.send('Produto adicionado com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar aluno: ' + error.message);
+        res.status(500).send('Erro ao adicionar produto: ' + error.message);
     }
 });
 
-// 6. Rota para cadastrar uma turma
+// Turmas
 app.post('/adicionar-turma', async (req, res) => {
-    const { nomeTurma, periodo } = req.body;
-    const dataInicio = new Date();
+    const {nomeTurma, periodo} = req.body;
+    const dataInicio = new Date()
 
     try {
         await sql.connect(dbConfig);
         const query = `
             INSERT INTO dimTurmas (nomeTurma, periodo, dataInicio)
-            VALUES (@nomeTurma, @periodo, @dataInicio)
+            VALUES ( @nomeTurma, @periodo, @dataInicio)
         `;
         const request = new sql.Request();
         request.input('nomeTurma', sql.NVarChar, nomeTurma);
@@ -159,41 +159,41 @@ app.post('/adicionar-turma', async (req, res) => {
         request.input('dataInicio', sql.Date, dataInicio);
         await request.query(query);
 
-        res.send('Turma adicionada com sucesso!');
+        res.send('Produto adicionado com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar turma: ' + error.message);
+        res.status(500).send('Erro ao adicionar produto: ' + error.message);
     }
 });
 
-// 7. Rota para cadastrar uma matéria
+//Matérias
 app.post('/adicionar-materia', async (req, res) => {
-    const { nomeMateria } = req.body;
+    const {nomeMateria} = req.body;
 
     try {
         await sql.connect(dbConfig);
         const query = `
             INSERT INTO dimMaterias (nomeMateria)
-            VALUES (@nomeMateria)
+            VALUES ( @nomeMateria)
         `;
         const request = new sql.Request();
         request.input('nomeMateria', sql.NVarChar, nomeMateria);
         await request.query(query);
 
-        res.send('Matéria adicionada com sucesso!');
+        res.send('Produto adicionado com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar matéria: ' + error.message);
+        res.status(500).send('Erro ao adicionar produto: ' + error.message);
     }
 });
 
-// 8. Rota para cadastrar uma atividade
+//Atividades
 app.post('/adicionar-atividade', async (req, res) => {
-    const { nomeAtividade, materiaID, semestre, descricao } = req.body;
+    const {nomeAtividade, materiaID, semestre, descricao} = req.body;
 
     try {
         await sql.connect(dbConfig);
         const query = `
             INSERT INTO dimAtividades (nomeAtividade, materiaID, semestre, descricao)
-            VALUES (@nomeAtividade, @materiaID, @semestre, @descricao)
+            VALUES ( @nomeAtividade, @materiaID, @semestre, @descricao)
         `;
         const request = new sql.Request();
         request.input('nomeAtividade', sql.NVarChar, nomeAtividade);
@@ -202,8 +202,151 @@ app.post('/adicionar-atividade', async (req, res) => {
         request.input('descricao', sql.NVarChar, descricao);
         await request.query(query);
 
-        res.send('Atividade adicionada com sucesso!');
+        res.send('Produto adicionado com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar atividade: ' + error.message);
+        res.status(500).send('Erro ao adicionar produto: ' + error.message);
+    }
+});
+
+//TESTE
+app.get('/carregarTurmas', async (req, res) => {
+    try {
+        // Conectar ao banco
+        await sql.connect(dbConfig);
+
+        const query = `SELECT turmaID, nomeTurma FROM dimTurmas`;
+
+        const result = await new sql.Request().query(query);
+
+        // Retornar as turmas como JSON
+        res.json(result.recordset);
+
+    } catch (err) {
+        console.error('Erro ao conectar ou buscar dados:', err);
+        res.status(500).send('Erro ao buscar turmas');
+    } finally {
+        sql.close();
+    }
+});
+
+//TESTE
+app.get('/carregarMaterias', async (req, res) => {
+    try {
+        // Conectar ao banco
+        await sql.connect(dbConfig);
+
+        const query = `SELECT materiaID, nomeMateria FROM dimMaterias`;
+
+        const result = await new sql.Request().query(query);
+
+        // Retornar as turmas como JSON
+        res.json(result.recordset);
+
+    } catch (err) {
+        console.error('Erro ao conectar ou buscar dados:', err);
+        res.status(500).send('Erro ao buscar matérias');
+    } finally {
+        sql.close();
+    }
+});
+
+app.get('/carregarAtividades', async (req, res) => {
+    try {
+        // Conectar ao banco
+        await sql.connect(dbConfig);
+
+        const query = `SELECT atividadeID, nomeAtividade FROM dimAtividades`;
+
+        const result = await new sql.Request().query(query);
+
+        // Retornar as turmas como JSON
+        res.json(result.recordset);
+
+    } catch (err) {
+        console.error('Erro ao conectar ou buscar dados:', err);
+        res.status(500).send('Erro ao buscar matérias');
+    } finally {
+        sql.close();
+    }
+});
+
+app.post('/associarMateriaTurmas', async (req, res) => {
+    const { materiaID, turmaIDs } = req.body;
+
+    if (!materiaID || !Array.isArray(turmaIDs) || turmaIDs.length === 0) {
+        return res.status(400).send('Dados inválidos.');
+    }
+
+    try {
+        await sql.connect(dbConfig);
+
+        for (const turmaID of turmaIDs) {
+            const request = new sql.Request(); // Cria uma nova instância para cada iteração
+            request.input('materiaID', sql.Int, materiaID);
+            request.input('turmaID', sql.Int, turmaID);
+
+            const query = `
+                INSERT INTO materiasTurmas (materiaID, turmaID)
+                VALUES (@materiaID, @turmaID)
+            `;
+            await request.query(query);
+        }
+
+        res.send('Matéria associada às turmas selecionadas com sucesso!');
+    } catch (error) {
+        console.error('Erro ao associar matéria às turmas:', error);
+        res.status(500).send('Erro ao associar matéria às turmas.');
+    } finally {
+        sql.close();
+    }
+});
+
+app.post('/associarAtividadeTurmas', async (req, res) => {
+    const { atividadeID, turmaIDs } = req.body;
+
+    if (!atividadeID || !Array.isArray(turmaIDs) || turmaIDs.length === 0) {
+        return res.status(400).send('Dados inválidos.');
+    }
+
+    try {
+        await sql.connect(dbConfig);
+
+        for (const turmaID of turmaIDs) {
+            const request = new sql.Request(); // Cria uma nova instância para cada iteração
+            request.input('atividadeID', sql.Int, atividadeID);
+            request.input('turmaID', sql.Int, turmaID);
+
+            const query = `
+                INSERT INTO atividadesTurmas (atividadeID, turmaID)
+                VALUES (@atividadeID, @turmaID)
+            `;
+            await request.query(query);
+        }
+
+        res.send('Matéria associada às turmas selecionadas com sucesso!');
+    } catch (error) {
+        console.error('Erro ao associar matéria às turmas:', error);
+        res.status(500).send('Erro ao associar matéria às turmas.');
+    } finally {
+        sql.close();
+    }
+});
+
+// Rota para obter os alunos de uma turma
+app.get("/alunos", async (req, res) => {
+    const turmaID = parseInt(req.query.turmaID, 10);
+    if (!turmaID || turmaID <= 0) {
+        return res.status(400).json({ error: "ID da turma inválido" });
+    }
+
+    try {
+        const pool = await sql.connect(dbConfig);
+        const result = await pool.request()
+            .input('turmaID', sql.Int, turmaID)
+            .query('SELECT alunoID, nomeAluno FROM dimAlunos WHERE turmaID = @turmaID');
+        res.json(result.recordset); // Retorna os alunos
+    } catch (err) {
+        console.error("Erro ao consultar alunos:", err);
+        res.status(500).json({ error: "Erro ao consultar alunos." });
     }
 });

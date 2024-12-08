@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="deuBom.css">
-</head>
-<body>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="base.css">
+    </head>
+    <body>
 
-    <header>
-        <!-- Header content -->
-        <img src="img/menu (1).png" alt="Menu" id="menu">
-        <img src="img/logo.png" alt="Logo" id="logo">
-        <img src="img/login (1).png" alt="Login" id="login">
-        <div class="direcionar"> <a href="coloca.aqui.html">Login</a> </div>
-    </header>
+        <header>
+            <img src="img/menu (1).png" alt="Menu" id="menu">
+            <img src="img/logo.png" alt="Logo" id="logo">
+            <img src="img/login (1).png
+            " alt="Login" id="login">
+            <div class="direcionar"> <a href="coloca.aqui.html" id="">Login</a> </div>
+        </header>
+        
+        <!-- Menu lateral -->
+        <div id="sideMenu" class="side-menu">
+            <button id="closeMenu" class="close-menu">X</button>
+            <ul>
+                <li>  <a href="coloca_aqui" class="menutexto"> <img src="img/Casa.png" alt="" class="icone"><p id="sair">Menu</p></a></li>
+                <li><a href="coloca_aqui" class="menutexto"> <img src="img/AdicionarFinais.png" alt="" class="icone"><p id="turmas">Turmas</p></a></li>
+                <li><a href="coloca_aqui" class="menutexto"> <img src="img/Estudante.png" alt="" class="icone">Adicionar</a></li>
+                <li><a href="index.html" class="menutexto"> <img src="img/SaidaFinais.png" alt="" class="icone" style="left: 10%;"><p id="menu">Sair</p></a></li>
+            </ul>
+        </div>
 
-    <!-- Barra de pesquisa -->
-    <div id="searchBarContainer">
-        <input type="text" id="searchInput" placeholder="Pesquisar Turma..." onkeyup="filterTurmas()">
-    </div>
-
-    <!-- Container das Turmas -->
-    <div id="containerTurmas">
-        <!-- Turmas serão inseridas aqui via JavaScript -->
-    </div>
-
-    <script src="deuBom,js"></script>
-</body>
-</html>
+        <script src="base.js"></script>
+    </body>
+    </html>

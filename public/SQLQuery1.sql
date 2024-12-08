@@ -195,4 +195,10 @@ INNER JOIN dimAtividades
 INNER JOIN dimTurmas
 	ON dimTurmas.turmaID = atividadesTurmas.turmaID
 
-INSERT INTO dimAlunos (nomeAluno, cpfAluno, telefoneAluno, emailAluno, turmaID)
+SELECT
+	nomeAluno,
+	dimTurmas.nomeTurma
+FROM
+	dimAlunos
+INNER JOIN dimTurmas
+	ON dimTurmas.turmaID = dimAlunos.turmaID
