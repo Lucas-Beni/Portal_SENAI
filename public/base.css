@@ -10,7 +10,7 @@ body{
 }
 
 header{
-    height: 15vh;
+    height: 12vh;
     width: auto;
     background-color: #FF2A1F;
     display: flex;
@@ -43,7 +43,7 @@ header{
 
     .direcionar a{
         position: absolute;
-        top: 6.5vh;
+        top: 4.5vh;
         right: 8.25vw;
         text-decoration: none;
         color: white;
@@ -52,7 +52,6 @@ header{
         font-weight: 790;
     }
   }
-
 
 
 

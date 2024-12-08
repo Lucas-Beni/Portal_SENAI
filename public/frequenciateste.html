@@ -61,7 +61,7 @@
         const FREQUENCIA_URL = "http://localhost:3000/frequencias";
         const TURMAS_URL = 'http://localhost:3000/turmas';
 
-
+        
         const exibirMensagem = (mensagem, sucesso = false) => {
             const mensagensDiv = document.getElementById("mensagens");
             mensagensDiv.textContent = mensagem;
@@ -160,13 +160,9 @@
                 });
                 if (!response.ok) throw new Error(`Erro HTTP! Status: ${response.status}`);
                 exibirMensagem("Frequências salvas com sucesso!", true);
-                
             } catch (error) {
                 exibirMensagem(`Erro ao salvar frequências: ${error.message}`);
             }
-
-            
-
         });
     </script>
 </body>
