@@ -4,17 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="atividadeTurma.css">
-    <title>Lista de Turmas</title>
+    <title>Adicionar atividade</title>
 </head>
 <body>
-
-    <h1>Lista de Turmas</h1>
-    <select name="atividade" id="atividade">
-    </select>
-    <ul id="turma-list" class="turma-list">
-        <!-- As turmas serão inseridas aqui dinamicamente -->
-    </ul>
-    <button id="associar">Associar Atividade às Turmas</button>
+    <header>
+        <img src="img/menu (1).png" alt="" id="menu">
+        <img src="img/logo.png" alt="" id="logo">
+        <img src="img/login (1).png" alt="" id="login">
+        <div>
+            <a href="coloca.aqui.html">Login</a>
+        </div>
+    </header>
+    <h1>Adicionar atividade</h1>
+    <div class="container">
+        <select name="atividade" id="atividade">
+        </select>
+        <ul id="turma-list" class="turma-list">
+            <!-- As turmas serão inseridas aqui dinamicamente -->
+        </ul>
+        <button id="associar">Adicionar</button>
+    </div>
 
     <script>
         // Função para carregar atividades no select

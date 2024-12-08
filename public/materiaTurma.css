@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -6,4 +8,120 @@
 
 body {
     min-height: 100vh;
+    font-family: "Inter";
+}
+
+header{
+    height: 12vh;
+    width: auto;
+    background-color: #FF000A;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    & #logo{
+        width: 11.5vw;
+        position: absolute;
+        left: 10vw;
+    }
+
+    & #login{
+        width: 4.5vw;
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        right: 3vw;
+    }
+
+    & #menu{
+        width: 5.5vw;
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        left: 1.8vw;
+    }
+
+    & div a{
+        position: absolute;
+        top: 7vh;
+        right: 8.25vw;
+        text-decoration: none;
+        color: white;
+        font-size: 1.05vw;
+        font-family: "Inter", sans-serif;
+        font-weight: 790;
+    }
+}
+
+& h1{
+    position: absolute;
+    top: 15vh;
+    left: 1vw;
+}
+
+.container{
+    height: 65vh;
+    width: 50vw;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vh;
+    background-image: url('img/fundoLogin.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 2.5vw;
+
+    & select{
+        width: 13vw;
+        height: 5vh;
+        border-radius: 1vw;
+        border: none;
+        background-color: #D9D9D9;
+        text-indent: .8vw;
+        font-size: 1vw;
+    }
+
+    & .turma-list {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(auto-fill, minmax(2vw, 1fr));
+        max-height: 30vh;
+        gap: .8vw;
+        list-style-type: none;
+        overflow-y: auto;
+    }
+
+    & input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #007bff;
+        border-radius: 4px;
+        cursor: pointer;
+        appearance: none;
+        outline: none;
+        background-color: #fff;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    & input[type="checkbox"]:checked {
+        background: #007bff;
+        border-color: #007bff;
+        box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+
+    & button{
+        background-color: #4CBE3A;
+        border: none;
+        color: #fff;
+        width: 9vw;
+        height: 5vh;
+        border-radius: 1vw;
+        font-size: 1vw;
+        cursor: pointer;
+    }
 }
