@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Ajusta a posição dos textos
             sair.style.left = '-5%';
-            turmas.style.left = '-5%';
+            turmas2.style.left = '-5%';
             menu.style.left = '-10%';
         });
 
