@@ -165,6 +165,43 @@ app.post('/adicionar-turma', async (req, res) => {
     }
 });
 
+// Deletar Turmas
+app.post('/deletarTurmas', async (req, res) => {
+    console.log(req.body); // Log dos dados recebidos
+    const { idsTurmas } = req.body;
+
+    if (!idsTurmas || !Array.isArray(idsTurmas)) {
+        console.error('IDs inválidos recebidos:', idsTurmas);
+        return res.status(400).send('IDs inválidos.');
+    }
+
+    try {
+        const pool = await sql.connect(dbConfig);
+
+        const deleteAlunosQuery = `DELETE FROM dimAlunos WHERE turmaID IN (${idsTurmas.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar alunos:', deleteAlunosQuery);
+        await pool.request().query(deleteAlunosQuery);
+
+        const deleteMateriaTurmaQuery = `DELETE FROM materiasTurmas WHERE turmaID IN (${idsTurmas.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar materiasTumas:', deleteMateriaTurmaQuery);
+        await pool.request().query(deleteMateriaTurmaQuery);
+
+        const deleteAtividadeTurmaQuery = `DELETE FROM atividadesTurmas WHERE turmaID IN (${idsTurmas.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar atividadesTumas:', deleteAtividadeTurmaQuery);
+        await pool.request().query(deleteAtividadeTurmaQuery);
+
+        const deleteTurmasQuery = `DELETE FROM dimTurmas WHERE turmaID IN (${idsTurmas.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar turmas:', deleteTurmasQuery);
+        await pool.request().query(deleteTurmasQuery);
+
+        res.status(200).send('Turmas e alunos deletados com sucesso.');
+    } catch (error) {
+        console.error('Erro ao deletar turmas e alunos:', error);
+        res.status(500).send('Erro interno no servidor.');
+    }
+});
+
+
 //Matérias
 app.post('/adicionar-materia', async (req, res) => {
     const {nomeMateria} = req.body;
@@ -182,6 +219,38 @@ app.post('/adicionar-materia', async (req, res) => {
         res.send('Produto adicionado com sucesso!');
     } catch (error) {
         res.status(500).send('Erro ao adicionar produto: ' + error.message);
+    }
+});
+
+// Deletar Materias
+app.post('/deletarMaterias', async (req, res) => {
+    console.log(req.body); // Log dos dados recebidos
+    const { idsMaterias } = req.body;
+
+    if (!idsMaterias || !Array.isArray(idsMaterias)) {
+        console.error('IDs inválidos recebidos:', idsMaterias);
+        return res.status(400).send('IDs inválidos.');
+    }
+
+    try {
+        const pool = await sql.connect(dbConfig);
+
+        const deleteMateriaTurmaQuery = `DELETE FROM materiasTurmas WHERE materiaID IN (${idsMaterias.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar materiasTumas:', deleteMateriaTurmaQuery);
+        await pool.request().query(deleteMateriaTurmaQuery);
+
+        const deleteMateriaAtividadeQuery = `DELETE FROM dimAtividades WHERE materiaID IN (${idsMaterias.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar materiasAtividades:', deleteMateriaAtividadeQuery);
+        await pool.request().query(deleteMateriaAtividadeQuery);
+
+        const deleteMateriasQuery = `DELETE FROM dimMaterias WHERE materiaID IN (${idsMaterias.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar materias:', deleteMateriasQuery);
+        await pool.request().query(deleteMateriasQuery);
+
+        res.status(200).send('Materias deletadas com sucesso.');
+    } catch (error) {
+        console.error('Erro ao deletar materias:', error);
+        res.status(500).send('Erro interno no servidor.');
     }
 });
 
@@ -205,6 +274,34 @@ app.post('/adicionar-atividade', async (req, res) => {
         res.send('Produto adicionado com sucesso!');
     } catch (error) {
         res.status(500).send('Erro ao adicionar produto: ' + error.message);
+    }
+});
+
+// Deletar Atividades
+app.post('/deletarAtividades', async (req, res) => {
+    console.log(req.body); // Log dos dados recebidos
+    const { idsAtividades } = req.body;
+
+    if (!idsAtividades || !Array.isArray(idsAtividades)) {
+        console.error('IDs inválidos recebidos:', idsAtividades);
+        return res.status(400).send('IDs inválidos.');
+    }
+
+    try {
+        const pool = await sql.connect(dbConfig);
+
+        const deleteAtividadeTurmaQuery = `DELETE FROM atividadesTurmas WHERE atividadeID IN (${idsAtividades.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar atividadesTumas:', deleteAtividadeTurmaQuery);
+        await pool.request().query(deleteAtividadeTurmaQuery);
+
+        const deleteAtividadesQuery = `DELETE FROM dimAtividades WHERE atividadeID IN (${idsAtividades.map(id => `'${id}'`).join(',')})`;
+        console.log('Query para deletar atividades:', deleteAtividadesQuery);
+        await pool.request().query(deleteAtividadesQuery);
+
+        res.status(200).send('Atividades deletadas com sucesso.');
+    } catch (error) {
+        console.error('Erro ao deletar atividades:', error);
+        res.status(500).send('Erro interno no servidor.');
     }
 });
 

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="deletar.css">
+    <title>Deletar turmas</title>
+</head>
+<body>
+    <header>
+        <img src="img/menu (1).png" alt="" id="menu">
+        <img src="img/logo.png" alt="" id="logo">
+        <img src="img/login (1).png" alt="" id="login">
+        <div>
+            <a href="coloca.aqui.html">Login</a>
+        </div>
+    </header>
+    <div class="turmas" id="turmas">
+        <p>Turmas</p>
+    </div>
+    <div class="atividades" id="atividades">
+        <p>Atividades</p>
+    </div>
+    <div class="disciplinas" id="disciplinas">
+        <p>Disciplinas</p>
+    </div>
+    <script src="deletar.js"></script>
+    <script>
+        // Função para carregar turmas na lista
+        async function carregarTurmas() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarTurmas');
+                const turmas = await response.json();
+                const turmaList = document.getElementById('turma-list');
+                turmaList.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+
+                turmas.forEach(turma => {
+                    const li = document.createElement('li');
+                    li.classList.add('turma-item');
+                    li.innerHTML = `
+                        <input type="checkbox" id="turma-${turma.turmaID}" value="${turma.turmaID}">
+                        <label for="turma-${turma.turmaID}">${turma.nomeTurma}</label>
+                    `;
+                    turmaList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar turmas:', error);
+            }
+        }
+
+        async function deletarTurma() {
+        // Captura todos os checkboxes
+        const checkboxes = document.querySelectorAll('#turma-list input[type="checkbox"]:checked');
+
+        // Coleta os IDs das turmas marcadas
+        const idsTurmas = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+        if (idsTurmas.length === 0) {
+            alert('Por favor, selecione ao menos uma turma para deletar.');
+            return;
+        }
+
+        try {
+            // Envia os IDs ao backend
+            const response = await fetch('http://localhost:3000/deletarTurmas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idsTurmas }) // Envia os IDs como JSON
+            });
+
+            if (response.ok) {
+                alert('Turmas deletadas com sucesso!');
+                carregarTurmas(); // Atualiza a lista de turmas
+            } else {
+                const erro = await response.text();
+                alert(`Erro ao deletar turmas: ${erro}`);
+            }
+        } catch (error) {
+            console.error('Erro ao deletar turmas:', error);
+            alert('Erro ao deletar turmas. Verifique o console para mais detalhes.');
+        }
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////
+    async function carregarAtividades() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarAtividades');
+                const atividades = await response.json()
+                const atividadeList = document.getElementById('atividade-list');
+                atividadeList.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+
+                atividades.forEach(atividade => {
+                    const li = document.createElement('li');
+                    li.classList.add('atividade-item');
+                    li.innerHTML = `
+                        <input type="checkbox" id="atividade-${atividade.atividadeID}" value="${atividade.atividadeID}">
+                        <label for="atividade-${atividade.atividadeID}">${atividade.nomeAtividade}</label>
+                    `;
+                    atividadeList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar atividades:', error);
+            }
+        }
+
+        async function deletarAtividade() {
+        // Captura todos os checkboxes
+        const checkboxes = document.querySelectorAll('#atividade-list input[type="checkbox"]:checked');
+
+        // Coleta os IDs das atividades marcadas
+        const idsAtividades = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+        if (idsAtividades.length === 0) {
+            alert('Por favor, selecione ao menos uma atividade para deletar.');
+            return;
+        }
+
+        try {
+            // Envia os IDs ao backend
+            const response = await fetch('http://localhost:3000/deletarAtividades', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idsAtividades }) // Envia os IDs como JSON
+            });
+
+            if (response.ok) {
+                alert('Atividades deletadas com sucesso!');
+                carregarAtividades(); // Atualiza a lista de Atividades
+            } else {
+                const erro = await response.text();
+                alert(`Erro ao deletar atividades: ${erro}`);
+            }
+        } catch (error) {
+            console.error('Erro ao deletar atividades:', error);
+            alert('Erro ao deletar atividades. Verifique o console para mais detalhes.');
+        }
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////
+async function carregarMaterias() {
+            try {
+                const response = await fetch('http://localhost:3000/carregarMaterias');
+                const materias = await response.json()
+                const materiaList = document.getElementById('materia-list');
+                materiaList.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+
+                materias.forEach(materia => {
+                    const li = document.createElement('li');
+                    li.classList.add('materia-item');
+                    li.innerHTML = `
+                        <input type="checkbox" id="materia-${materia.materiaID}" value="${materia.materiaID}">
+                        <label for="materia-${materia.materiaID}">${materia.nomeMateria}</label>
+                    `;
+                    materiaList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar materias:', error);
+            }
+        }
+
+async function deletarMateria() {
+        // Captura todos os checkboxes
+        const checkboxes = document.querySelectorAll('#materia-list input[type="checkbox"]:checked');
+
+        // Coleta os IDs das materias marcadas
+        const idsMaterias = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+        if (idsMaterias.length === 0) {
+            alert('Por favor, selecione ao menos uma materia para deletar.');
+            return;
+        }
+
+        try {
+            // Envia os IDs ao backend
+            const response = await fetch('http://localhost:3000/deletarMaterias', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idsMaterias }) // Envia os IDs como JSON
+            });
+
+            if (response.ok) {
+                alert('Materias deletadas com sucesso!');
+                carregarMaterias(); // Atualiza a lista de Materias
+            } else {
+                const erro = await response.text();
+                alert(`Erro ao deletar materias: ${erro}`);
+            }
+        } catch (error) {
+            console.error('Erro ao deletar materias:', error);
+            alert('Erro ao deletar materias. Verifique o console para mais detalhes.');
+        }
+    }
+
+
+        // Carrega matérias e turmas ao carregar a página
+        window.onload = () => {
+            Load();
+        };
+    </script>
+
+</body>
+</html>
