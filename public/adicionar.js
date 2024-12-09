@@ -63,8 +63,8 @@ function aluno1() {
     atividade.style.top = "85%";
     disciplina.style.left = "75%";
     disciplina.style.top = "75%";
-    aluno.removeEventListener('click',alunoLarge)
-    aluno.removeEventListener('click',carregarTurma)
+    aluno.removeEventListener('click',alunoLarge);
+    carregarTurma();
 }
 
 function aluno2() {
@@ -200,7 +200,8 @@ function atividade1() {
     turma.style.top = "75%";
     disciplina.style.left = "50%";
     disciplina.style.top = "85%";
-    atividade.removeEventListener('click',atividadeLarge)
+    atividade.removeEventListener('click',atividadeLarge);
+    carregarMaterias()
 }
 
 function atividade2() {

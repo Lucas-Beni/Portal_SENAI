@@ -72,7 +72,7 @@ app.post("/frequencias", async (req, res) => {
         for (const registro of registros) {
             const { alunoID, presenca } = registro;
 
-            if (!alunoID || !["A", "P", "D"].includes(presenca)) {
+            if (!alunoID || !["A", "P", "F", "D"].includes(presenca)) {
                 continue; // Ignora registros inválidos
             }
 
@@ -109,6 +109,7 @@ app.post('/adicionar-professor', async (req, res) => {
         request.input('nome', sql.NVarChar, nome);
         request.input('senha', sql.NVarChar, senha); 
         request.input('email', sql.NVarChar, email); 
+        
         await request.query(query);
         res.send('Usuário adicionado com sucesso!'); 
     } catch (error) {

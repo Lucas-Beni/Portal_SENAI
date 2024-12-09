@@ -22,11 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
             icone[index].style.opacity = 1;
             icone[index].style.visibility = 'visible';
             icone[index].style.display = 'block';
-
-            // Ajusta a posição dos textos
-            sair.style.left = '-5%';
-            turmas.style.left = '-5%';
-            menu.style.left = '-10%';
         });
 
         item.addEventListener("mouseleave", function() {

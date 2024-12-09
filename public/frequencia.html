@@ -116,9 +116,9 @@
 
                     letraDiv.addEventListener("click", () => {
                         const estados = [
-                            { letra: "P", classe: "letra-p" },
-                            { letra: "F", classe: "letra-f" },
-                            { letra: "D", classe: "letra-d" }
+                            { letra: "P", classe: "letra-p" }, // Presente
+                            { letra: "F", classe: "letra-f" }, // Falta
+                            { letra: "D", classe: "letra-d" }  // Dispensa
                         ];
                         let estadoAtual = estados.findIndex(e => e.letra === letraDiv.textContent);
                         estadoAtual = (estadoAtual + 1) % estados.length;
