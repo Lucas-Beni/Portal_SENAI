@@ -1,6 +1,10 @@
 async function exibirTurmas() {
     const container = document.getElementById('containerTurmas');
     container.innerHTML = '';
+    if (!container) {
+        alert("Elemento 'containerTurmas' não encontrado no DOM");
+        return;
+    }
 
     const nome = document.createElement('div');
     container.appendChild(nome);
@@ -34,13 +38,9 @@ async function exibirTurmas() {
     periodo.style.display = "flex";
     periodo.style.justifyContent = "center";
     periodo.style.alignItems = "center";
-    if (!container) {
-        alert("Elemento 'containerTurmas' não encontrado no DOM");
-        return;
-    }
 
     try {
-        const resposta = await fetch('http://localhost:3000/exibirTurmas');
+        const resposta = await fetch('http://localhost:3000/carregarTurmas');
         if (resposta.ok) {
             const turmasProfessor = await resposta.json();
 
@@ -81,8 +81,40 @@ async function exibirTurmas() {
                 periodoDiv.style.justifyContent = "center";
                 periodoDiv.style.alignItems = "center";
 
-                const pagAlunos = '';
-                const blob = new Blob([pagAlunos], { type: 'text/html' });
+                const pagAlunosMaterias = `<!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="http://localhost:3000/pagAlunosMaterias.css">
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+                    <title id="title">${turmaP.nomeTurma}</title>
+                </head>
+                <body onload="exibirAlunos()">
+                    <header>
+                        <div id="turma">${turmaP.nomeTurma}</div>
+                        <img src="img/menu (1).png" alt="a" id="menu">
+                        <img src="img/logo.png" alt="a" id="logo">
+                        <img src="img/login (1).png" alt="a" id="login">
+                        <div>
+                            <a href="coloca.aqui.html">Login</a>
+                        </div>
+                    </header>
+                    <div id="containerConteudo">
+                        <div id="abaA" onclick="exibirAlunos()">Alunos</div>
+                        <div id="abaM" onclick="exibirMaterias()">Matérias</div>
+                        <div id="containerAlunos"></div>
+                    </div>
+                    <a href=".html" id="presenca">Adicionar Presença</a>
+                    <script>
+                        const turmaID = ${turmaP.turmaID};
+                    </script>
+                    <script src="http://localhost:3000/pagAlunosMaterias.js"></script>
+                </body>
+                </html>`;
+                const blob = new Blob([pagAlunosMaterias], { type: 'text/html' });
 
                 const link = document.createElement('a');
                 nomeDiv.appendChild(link);
@@ -94,7 +126,7 @@ async function exibirTurmas() {
         } else {
             alert('Deu erro chefia.');
         }
-    } catch (error) {
+    } catch(error) {
         console.error("Erro ao obter as turmas:", error);
     }
 }

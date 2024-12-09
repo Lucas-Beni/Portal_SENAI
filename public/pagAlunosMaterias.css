@@ -56,11 +56,25 @@ header{
         top: 7vh;
         right: 8.25vw;
         text-decoration: none;
-        color: white;
+        color: #fff;
         font-size: 1.05vw;
         font-family: "Inter", sans-serif;
         font-weight: 700;
     }
+}
+
+#turma {
+    height: 10vh;
+    width: 20vw;
+    font-size: 2vw;
+    font-family: "Inter", sans-serif;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 16vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #containerConteudo {
@@ -75,23 +89,37 @@ header{
     flex-wrap: wrap;
 }
 
-#aba {
+#abaA {
     height: 5vh;
     width: 10vw;
     background-color: #b00a0c;
     color: #fff;
     font-size: 1.5vw;
     font-family: "Inter", sans-serif;
-    border: .15vw solid #000;
-    border-bottom: 0;
     border-top-left-radius: 1.5vw;
     border-top-right-radius: 1.5vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
-#containerTurmas {
+#abaM {
+    height: 5vh;
+    width: 10vw;
+    background-color: #b00a0c;
+    color: #fff;
+    font-size: 1.5vw;
+    font-family: "Inter", sans-serif;
+    border-top-left-radius: 1.5vw;
+    border-top-right-radius: 1.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#containerAlunos {
     height: 60vh;
     width: 60vw;
     background-color: #e4e4e4;
@@ -99,4 +127,22 @@ header{
     border-top: 0;
     overflow-x: hidden;      
     overflow-y: auto;
+}
+
+#presenca {
+    height: 5vh;
+    width: 15vw;
+    background-color: #4CBE3A;
+    color: #fff;
+    border-radius: 1vw;
+    font-size: 1vw;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

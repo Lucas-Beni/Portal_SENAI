@@ -347,6 +347,76 @@ app.get('/carregarMaterias', async (req, res) => {
     }
 });
 
+//TESTE
+app.get('/carregarMaterias2', async (req, res) => {
+    try {
+        // Conectar ao banco
+        await sql.connect(dbConfig);
+
+        const query = `
+        SELECT
+            materiaID,
+            dimMaterias.nomeMateria
+        FROM
+            materiasTurmas
+        INNER JOIN
+            dimMaterias
+        ON
+            materiaTurmas.materiaID = dimMaterias.materiasID
+        WHERE
+            turmaID = @turmaID`;
+
+        const request = new sql.Request();
+        
+        request.input('turmaID', sql.Int, turmaID);
+
+        const result = await request.query(query);
+
+        // Retornar as turmas como JSON
+        res.json(result.recordset);
+
+    } catch (err) {
+        console.error('Erro ao conectar ou buscar dados:', err);
+        res.status(500).send('Erro ao buscar matérias');
+    } finally {
+        sql.close();
+    }
+});
+
+//TESTE
+app.get('/carregarAlunos', async (req, res) => {
+    try {
+        // Conectar ao banco
+        await sql.connect(dbConfig);
+
+        const query = `
+        SELECT
+            nomeAluno,
+            cpfAluno,
+            emailAluno,
+            telefoneAluno
+        FROM
+            dimAlunos
+        WHERE
+            turmaID = @turmaID`;
+
+        const request = new sql.Request();
+
+        request.input('turmaID', sql.Int, turmaID);
+
+        const result = await request.query(query);
+
+        // Retornar as turmas como JSON
+        res.json(result.recordset);
+
+    } catch (err) {
+        console.error('Erro ao conectar ou buscar dados:', err);
+        res.status(500).send('Erro ao buscar matérias');
+    } finally {
+        sql.close();
+    }
+});
+
 app.get('/carregarAtividades', async (req, res) => {
     try {
         // Conectar ao banco
