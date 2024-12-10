@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <title>Turmas</title>
 </head>
+
 <body onload="exibirTurmas()">
+
     <header>
         <img src="img/menu (1).png" alt="" id="menu">
         <img src="img/logo.png" alt="" id="logo">
@@ -18,10 +20,16 @@
             <a href="coloca.aqui.html">Login</a>
         </div>
     </header>
+
+
     <div id="containerConteudo">
+        <input type="text" id="searchBar" placeholder="Pesquisar turmas..." oninput="filtrarTurmas()">
         <div id="aba">Suas Turmas</div>
         <div id="containerTurmas"></div>
     </div>
+    
+
     <script src="pagTurmas.js"></script>
 </body>
+
 </html>

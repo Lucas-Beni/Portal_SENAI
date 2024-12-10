@@ -130,3 +130,18 @@ async function exibirTurmas() {
         console.error("Erro ao obter as turmas:", error);
     }
 }
+
+
+function filtrarTurmas() {
+    const searchInput = document.getElementById('searchBar').value.toLowerCase();
+    const turmas = document.querySelectorAll('#containerTurmas > div');
+
+    turmas.forEach(turma => {
+        const nomeTurma = turma.querySelector('div:first-child a').textContent.toLowerCase();
+        if (nomeTurma.includes(searchInput)) {
+            turma.style.display = 'flex'; // Mostra a turma
+        } else {
+            turma.style.display = 'none'; // Oculta a turma
+        }
+    });
+}

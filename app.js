@@ -117,6 +117,33 @@ app.post('/adicionar-professor', async (req, res) => {
     }
 });
 
+//LOGIN
+app.post('/login', async (req, res) => {
+    const { nome, senha, email } = req.body;
+
+    try {
+        await sql.connect(dbConfig);
+        const query = `
+            SELECT * FROM dimProfessores
+            WHERE nomeProfessor = @nome AND emailProfessor = @email AND Senha = @senha
+        `;
+        const request = new sql.Request();
+        request.input('nome', sql.NVarChar, nome);
+        request.input('email', sql.NVarChar, email);
+        request.input('senha', sql.NVarChar, senha);
+
+        const result = await request.query(query);
+
+        if (result.recordset.length > 0) {
+            res.send({ success: true, message: 'Login bem-sucedido!' });
+        } else {
+            res.status(401).send({ success: false, message: 'Credenciais inválidas.' });
+        }
+    } catch (error) {
+        res.status(500).send({ success: false, message: 'Erro ao processar o login: ' + error.message });
+    }
+});
+
 
 // Alunos
 app.post('/adicionar-aluno', async (req, res) => {
@@ -137,9 +164,9 @@ app.post('/adicionar-aluno', async (req, res) => {
         request.input('foto', sql.VarBinary, foto);
         await request.query(query);
 
-        res.send('Produto adicionado com sucesso!');
+        res.send('Aluno adicionado com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar produto: ' + error.message);
+        res.status(500).send('Erro ao adicionar aluno: ' + error.message);
     }
 });
 
@@ -160,9 +187,9 @@ app.post('/adicionar-turma', async (req, res) => {
         request.input('dataInicio', sql.Date, dataInicio);
         await request.query(query);
 
-        res.send('Produto adicionado com sucesso!');
+        res.send('Turma adicionada com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar produto: ' + error.message);
+        res.status(500).send('Erro ao adicionar turma: ' + error.message);
     }
 });
 
@@ -217,9 +244,9 @@ app.post('/adicionar-materia', async (req, res) => {
         request.input('nomeMateria', sql.NVarChar, nomeMateria);
         await request.query(query);
 
-        res.send('Produto adicionado com sucesso!');
+        res.send('Matéria adicionado com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar produto: ' + error.message);
+        res.status(500).send('Erro ao adicionar matéria: ' + error.message);
     }
 });
 
@@ -272,9 +299,9 @@ app.post('/adicionar-atividade', async (req, res) => {
         request.input('descricao', sql.NVarChar, descricao);
         await request.query(query);
 
-        res.send('Produto adicionado com sucesso!');
+        res.send('Atividade adicionada com sucesso!');
     } catch (error) {
-        res.status(500).send('Erro ao adicionar produto: ' + error.message);
+        res.status(500).send('Erro ao adicionar atividade: ' + error.message);
     }
 });
 
@@ -474,7 +501,7 @@ app.post('/associarAtividadeTurmas', async (req, res) => {
 
     if (!atividadeID || !Array.isArray(turmaIDs) || turmaIDs.length === 0) {
         return res.status(400).send('Dados inválidos.');
-    }
+    }x
 
     try {
         await sql.connect(dbConfig);

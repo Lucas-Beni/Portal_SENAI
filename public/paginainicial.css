@@ -204,7 +204,6 @@ header{
 
 }
 
-
 .adicionar p{
     width: 15vw;
     font-size: 1.40vw;
@@ -215,6 +214,47 @@ header{
     bottom: 48.7vh;
 }
 
+
+
+.deletar p{
+    width: 15vw;
+    font-size: 1.40vw;
+    font-family: "Inter", sans-serif;
+    font-weight: 790;
+    position: absolute;
+    left: 59.5vw;
+    bottom: 48.7vh;
+}
+
+.deletar img{
+    width: 9vw;
+    position: absolute;
+    left: 60.55vw;
+    top: 25vh;
+}
+
+.deletar_fundo img{
+    width: 26vw;
+    background-size: cover;
+    filter: brightness(85%);
+    border-radius: 1.8vw;
+    display: flex;
+    position: absolute; 
+    left: 52vw;
+    bottom: 48.7vh;
+    z-index: -100;
+
+}
+
+.deletar p{
+    width: 15vw;
+    font-size: 1.40vw;
+    font-family: "Inter", sans-serif;
+    font-weight: 790;
+    position: absolute;
+    left: 59.5vw;
+    bottom: 48.7vh;
+}
 
 
 

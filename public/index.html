@@ -15,7 +15,7 @@
         <p>Educação Profissional</p>
     </div>
 
-    <div class="login">
+    <form class="loginForm">
         <p>Login</p>
         
         <div class="inputs">
@@ -25,39 +25,40 @@
         </div>
         
         <button id="loginBtn">Entrar</button>
-        <a href="cadastro.html">Não tem uma Conta?</a>
-    </div>
+        <a href="cadastros.html">Não tem uma Conta?</a>
+    </form>
 
 
     <script>
-        // Recupera o usuário atual do sessionStorage
-        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+document.querySelector('.loginForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-        if (currentUser) {
-            // Exibe mensagem de boas-vindas
-            document.getElementById("welcomeMessage").innerText = `Bem-vindo, ${currentUser.username}!`;
+    const usuario = {
+        nome: document.getElementById('username').value,
+        senha: document.getElementById('password').value,
+        email: document.getElementById('email').value
+    };
+    const user1 = { username: "admin", password: "admin123", email: "admin@example.com" };
 
-            // Exibe dados exclusivos do usuário
-            const userDataDiv = document.getElementById("userData");
-            if (currentUser.username === "admin") {
-                userDataDiv.innerHTML = `<p>Você é o administrador. Aqui estão seus dados privilegiados.</p>`;
-            } else if (currentUser.username === "user1") {
-                userDataDiv.innerHTML = `<p>Você é um usuário comum. Aqui estão seus dados personalizados.</p>`;
-            }
-        } else {
-            // Caso não haja usuário autenticado
-            document.getElementById("welcomeMessage").innerText = "Usuário não autenticado.";
-        }
-
-        // Função de logout
-        document.getElementById("logoutBtn").addEventListener("click", () => {
-            sessionStorage.removeItem("currentUser");
-            window.location.href = "index.html"; // Redireciona para a página de login
+    try {
+        const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(usuario)
         });
+        const result = await response.json();
+
+        if (response.ok) {
+            alert('Login realizado com sucesso!');
+            window.location.href = 'paginainicial.html';
+        } else {
+            alert(result.message || 'Credenciais inválidas.');
+        }
+    } catch (error) {
+        alert('Erro ao efetuar login: ' + error.message);
+    }
+});
+
     </script>
-
-
 </body>
-<script src="script.js"></script>
-
 </html>

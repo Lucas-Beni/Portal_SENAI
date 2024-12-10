@@ -70,7 +70,7 @@ header{
     overflow-x: hidden;
     transition: 0.5s; 
     z-index: 1000;
-    padding-top: 13vh; /* Espaço superior para o conteúdo */
+    padding-top: 20vh; /* Espaço superior para o conteúdo */
 }
 
 .side-menu ul {
@@ -166,3 +166,166 @@ header{
     color: blue; /* Dispensado */
 }
 
+        /* Adicionando estilos diretamente */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 12vh;
+            background-color: #FF2A1F;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        header img {
+            cursor: pointer;
+        }
+
+        header .direcionar a {
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .side-menu {
+            width: 0;
+            height: 100vh;
+            background-color: #FF2A1F;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            overflow: hidden;
+            transition: width 0.5s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .side-menu ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .side-menu ul li {
+            margin: 15px 0;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #FF2A1F;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #FF2A1F;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #e01c17;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #FF2A1F;
+            color: white;
+        }
+
+        .letra {
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .letra-p {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .letra-f {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .letra-d {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        #mensagens {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }

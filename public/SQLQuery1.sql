@@ -173,10 +173,12 @@ GO
 
 SELECT * FROM dimAlunos
 SELECT * FROM dimTurmas
-SELECT * FROM dimMaterias
+ 
 SELECT * FROM atividadesTurmas
 SELECT * FROM materiasTurmas
-SELECT * FROM dimAtividades		
+SELECT * FROM dimAtividades
+SELECT * FROM dimProfessores
+SELECT * FROM factFrequencias
 
 USE sistemaEscolar; -- Substitua pelo nome do seu banco de dados
 GO

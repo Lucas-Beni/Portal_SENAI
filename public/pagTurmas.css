@@ -100,3 +100,16 @@ header{
     overflow-x: hidden;      
     overflow-y: auto;
 }
+
+
+#searchBar {
+    width: 58vw;
+    height: 4vh;
+    margin: 1vh 1vw;
+    font-size: 1.8vh;
+    padding: 0.5vh;
+    border: 1px solid #c7c7c7;
+    border-radius: 4px;
+    font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+}
