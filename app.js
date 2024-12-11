@@ -501,7 +501,7 @@ app.post('/associarAtividadeTurmas', async (req, res) => {
 
     if (!atividadeID || !Array.isArray(turmaIDs) || turmaIDs.length === 0) {
         return res.status(400).send('Dados inválidos.');
-    }x
+    }
 
     try {
         await sql.connect(dbConfig);
